@@ -790,8 +790,7 @@
     else if(mode === 'matchup') { populateMatchupDropdowns(); renderMatchupView(); }
     else renderTeams();
   }
-
-  // 1. Grid Cards View (각 구단 1, 2주차 실측 스코어 뱃지 완벽 노출)
+  // 1. Grid Cards View (각 구단 1~4주차 실측 스코어 뱃지 완벽 노출)
   function renderTeams() {
     const filtered = getFilteredTeams();
     document.getElementById('resultCountBadge').textContent = `${filtered.length}팀 표시 중`;
@@ -801,17 +800,16 @@
       const r = getTeamRecord(t.id);
       const gmap = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(t.stadium+', '+t.cityEn)}`;
       
-      // 주차별 실측 매치 결과 뱃지
+      // 주차별 실측 매치 결과 뱃지 (최신 4경기 깔끔한 그리드 표시)
       const gamesList = (r.games || []).filter(g => g.status === 'FINAL');
       const gameBadgesHtml = gamesList.map(g => {
         const oppTeam = NFL_TEAMS.find(x => x.id === g.oppId);
         const oppName = oppTeam ? oppTeam.nameKo.split(' ')[0] : g.oppId.toUpperCase();
         return `
-          <div class="flex items-center justify-between text-[11px] py-1 px-2 rounded-lg ${g.isWin ? 'bg-emerald-950/60 border border-emerald-800/50 text-emerald-300' : 'bg-rose-950/60 border border-rose-800/50 text-rose-300'}">
-            <span class="font-bold font-mono text-[10px] text-slate-400">${g.week}주차 (${g.homeAway === 'HOME' ? '홈' : '원정'})</span>
-            <span class="font-medium truncate mx-1">vs ${oppName}</span>
-            <span class="font-bold font-mono">${g.myScore}:${g.oppScore}</span>
-            <span class="ml-1 text-[10px] font-black px-1 rounded ${g.isWin ? 'bg-emerald-800 text-white' : 'bg-rose-800 text-white'}">${g.isWin ? '승' : '패'}</span>
+          <div class="flex items-center justify-between text-[10px] py-1 px-1.5 rounded-lg ${g.isWin ? 'bg-emerald-950/60 border border-emerald-800/50 text-emerald-300' : 'bg-rose-950/60 border border-rose-800/50 text-rose-300'}">
+            <span class="font-mono text-[9px] text-slate-400">${g.week}W ${g.homeAway === 'HOME' ? 'vs' : '@'}${oppName}</span>
+            <span class="font-bold font-mono text-[10px] mx-1">${g.myScore}:${g.oppScore}</span>
+            <span class="text-[9px] font-black px-1 rounded ${g.isWin ? 'bg-emerald-800 text-white' : 'bg-rose-800 text-white'}">${g.isWin ? '승' : '패'}</span>
           </div>
         `;
       }).join('');
@@ -834,10 +832,12 @@
             <div class="text-[10px] font-bold text-slate-400">${r.pf}득 / ${r.pa}실 (<span class="${String(r.diff).includes('+')?'text-emerald-400':'text-rose-400'}">${r.diff}</span>)</div>
           </div>
 
-          <!-- 검증된 주차별 경기 결과 뱃지 -->
-          <div class="mb-3 space-y-1 bg-slate-950/80 p-2 rounded-xl border border-slate-800/80">
-            <div class="text-[10px] font-bold text-slate-400 mb-1 flex justify-between"><span>시즌 경기별 실측 스코어</span><span class="text-emerald-400 text-[9px]">클릭 시 전 경기 열람</span></div>
-            ${gameBadgesHtml}
+          <!-- 검증된 1~4주차 경기 결과 뱃지 -->
+          <div class="mb-3 bg-slate-950/80 p-2 rounded-xl border border-slate-800/80">
+            <div class="text-[10px] font-bold text-slate-400 mb-1.5 flex justify-between"><span>시즌 경기별 실측 스코어 (최신 전수 검증)</span><span class="text-emerald-400 text-[9px]">클릭 시 전 경기 열람</span></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+              ${gameBadgesHtml}
+            </div>
           </div>
 
           <div class="grid grid-cols-4 gap-1 mt-auto">
@@ -849,15 +849,15 @@
     document.getElementById('emptyState').classList.toggle('hidden', filtered.length > 0);
   }
 
-  // 2. Weekly Scores View (1주차, 2주차 리그 16개 전 경기 실측 전광판)
+  // 2. Weekly Scores View (1~4주차 리그 전 경기 실측 전광판 & 5주차 예정)
   function setWeeklyScoreTab(w) {
     currentScoreWeek = w;
-    [1, 2, 3].forEach(wk => {
+    [1, 2, 3, 4, 5].forEach(wk => {
       const btn = document.getElementById('weekTab' + wk);
       if(btn) {
         btn.className = wk === w 
-          ? 'px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 text-white' 
-          : 'px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white';
+          ? 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 text-white' 
+          : 'px-2.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white';
       }
     });
     renderWeeklyScoresBoard();
