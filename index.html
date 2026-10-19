@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NFL 32개 팀 완벽 도감 & 1~4주차 전 경기 실측 스코어 센터</title>
+  <title>NFL 32개 팀 완벽 도감 & 1~6주차 전 경기 실측 스코어 센터</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -93,23 +93,25 @@
       <div>
         <span class="font-bold text-slate-200">NFL 32개 구단 현황</span>
         <span class="ml-2 bg-slate-800 text-slate-300 px-2 py-0.5 rounded-full font-bold" id="resultCountBadge">32팀 표시 중</span>
-        <span class="ml-2 text-emerald-400 hidden sm:inline" id="lastUpdatedLabel"><i class="fa-solid fa-circle-check text-emerald-400"></i> 2026 NFL 1~4주차 전 경기 공식 스코어 전수 검증 완료</span>
+        <span class="ml-2 text-emerald-400 hidden sm:inline" id="lastUpdatedLabel"><i class="fa-solid fa-circle-check text-emerald-400"></i> 2026 NFL 1~6주차 전 경기 공식 스코어 전수 검증 완료</span>
       </div>
     </div>
 
-    <!-- 1. Weekly Scores View (1주차~4주차 전 64경기 실측 스코어보드 & 5주차 예정) -->
+    <!-- 1. Weekly Scores View (1주차~6주차 전 96경기 실측 스코어보드 & 7주차 예정) -->
     <div id="scoresSection" class="hidden mb-6 space-y-4">
       <div class="bg-gradient-to-r from-slate-900 via-emerald-950/30 to-slate-900 p-5 rounded-2xl border border-slate-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xl">
         <div>
           <h2 class="text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-calendar-check text-emerald-400"></i> 2026 NFL 주차별 전 경기 공식 스코어보드</h2>
-          <p class="text-xs text-slate-400 mt-1">1주차부터 가장 최근 종료된 4주차(피츠버그 24:27 클리블랜드 등)까지 전 경기 실측 스코어와 5주차 예정 일정입니다.</p>
+          <p class="text-xs text-slate-400 mt-1">1주차부터 가장 최근 종료된 6주차(피츠버그 20:17 볼티모어 등 라이벌전)까지 전 경기 실측 스코어와 7주차 예정 일정입니다.</p>
         </div>
         <div class="flex items-center gap-1.5 bg-slate-950 p-1.5 rounded-xl border border-slate-800 overflow-x-auto scrollbar-none">
           <button onclick="setWeeklyScoreTab(1)" id="weekTab1" class="px-2.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white shrink-0">1주차</button>
           <button onclick="setWeeklyScoreTab(2)" id="weekTab2" class="px-2.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white shrink-0">2주차</button>
           <button onclick="setWeeklyScoreTab(3)" id="weekTab3" class="px-2.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white shrink-0">3주차</button>
-          <button onclick="setWeeklyScoreTab(4)" id="weekTab4" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 text-white shrink-0">4주차 (최신 경기 결과)</button>
-          <button onclick="setWeeklyScoreTab(5)" id="weekTab5" class="px-2.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white shrink-0">5주차 (예정 경기)</button>
+          <button onclick="setWeeklyScoreTab(4)" id="weekTab4" class="px-2.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white shrink-0">4주차</button>
+          <button onclick="setWeeklyScoreTab(5)" id="weekTab5" class="px-2.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white shrink-0">5주차</button>
+          <button onclick="setWeeklyScoreTab(6)" id="weekTab6" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 text-white shrink-0">6주차 (최신 경기 결과)</button>
+          <button onclick="setWeeklyScoreTab(7)" id="weekTab7" class="px-2.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white shrink-0">7주차 (예정 경기)</button>
         </div>
       </div>
       <div id="weeklyMatchupsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
@@ -119,8 +121,8 @@
     <div id="standingsSection" class="hidden mb-6 space-y-4">
       <div class="bg-gradient-to-r from-slate-900 via-blue-950/40 to-slate-900 p-4 rounded-2xl border border-slate-800 flex flex-col md:flex-row items-start justify-between gap-4">
         <div>
-          <h2 class="text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-ranking-star text-amber-400"></i> NFL 정규시즌 공식 디비전 순위표 (4주차 종료 기준)</h2>
-          <p class="text-xs text-slate-400 mt-1">실측 전적(승·패·무), 득점, 실점, 득실차 및 가장 최근 4주차 경기 스코어가 완벽 정렬되었습니다.</p>
+          <h2 class="text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-ranking-star text-amber-400"></i> NFL 정규시즌 공식 디비전 순위표 (6주차 종료 기준)</h2>
+          <p class="text-xs text-slate-400 mt-1">실측 전적(승·패·무), 득점, 실점, 득실차 및 가장 최근 6주차 라이벌전 스코어가 완벽 정렬되었습니다.</p>
         </div>
       </div>
       <div id="standingsDivisionGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-5"></div>
@@ -157,9 +159,9 @@
         <div class="flex flex-col md:flex-row items-center justify-between gap-4 pb-4 border-b border-slate-800">
           <h2 class="text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-scale-balanced text-rose-500"></i> 맞대결 전력 분석기</h2>
           <div class="flex gap-1.5">
-            <button onclick="setMatchupPair('pit', 'ind')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-[11px] rounded-lg border border-slate-700 text-amber-300">⚡ 5주차: PIT vs IND</button>
-            <button onclick="setMatchupPair('pit', 'cle')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-[11px] rounded-lg border border-slate-700 text-slate-200">⚔️ 4주차: PIT vs CLE</button>
-            <button onclick="setMatchupPair('kc', 'lv')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-[11px] rounded-lg border border-slate-700 text-slate-200">🏆 4주차: KC vs LV</button>
+            <button onclick="setMatchupPair('pit', 'bal')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-[11px] rounded-lg border border-slate-700 text-amber-300">⚡ 6주차: PIT vs BAL</button>
+            <button onclick="setMatchupPair('kc', 'den')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-[11px] rounded-lg border border-slate-700 text-slate-200">⚔️ 6주차: KC vs DEN</button>
+            <button onclick="setMatchupPair('phi', 'nyg')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-[11px] rounded-lg border border-slate-700 text-slate-200">🏆 6주차: PHI vs NYG</button>
           </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-11 gap-3 items-center">
@@ -215,11 +217,11 @@
           </div>
         </div>
 
-        <!-- 2026 Season Game-by-Game Scoreboard (Weeks 1~4 Verified) -->
+        <!-- 2026 Season Game-by-Game Scoreboard (Weeks 1~6 Verified) -->
         <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 space-y-2">
           <div class="flex items-center justify-between">
             <h3 class="text-xs font-bold text-amber-400 flex items-center gap-1.5"><i class="fa-solid fa-list-ol"></i> 2026 시즌 전 경기 결과 & 실측 스코어보드 (누구와 몇 대 몇으로 싸웠는가)</h3>
-            <span class="text-[10px] text-emerald-400 font-bold">1~4주차 100% 실측 검증됨</span>
+            <span class="text-[10px] text-emerald-400 font-bold">1~6주차 100% 실측 검증됨</span>
           </div>
           <div id="modalGameLogContainer" class="space-y-2 pt-1"></div>
         </div>
@@ -234,397 +236,397 @@
         <div class="bg-slate-900 rounded-xl p-3 border border-slate-800 grid grid-cols-4 gap-2 text-xs">
           <div class="bg-slate-950 p-2 rounded"><div class="text-slate-400">감독</div><div class="font-bold text-white mt-1 truncate" id="modalCoach"></div></div>
           <div class="bg-slate-950 p-2 rounded"><div class="text-slate-400">우승</div><div class="font-bold text-amber-400 mt-1" id="modalSuperBowls"></div></div>
-          <div class="bg-slate-950 p-2 rounded col-span-2"><div class="text-slate-400 flex justify-between"><span>홈구장</span><a id="modalGMapLink" href="#" target="_blank" class="text-emerald-400 hover:underline"><i class="fa-solid fa-map"></i> 구글 지도</a></div><div class="font-bold text-white mt-1 truncate" id="modalStadium"></div></div>
-        </div>
-      </div>
-
-      <div class="p-4 border-t border-slate-800 flex justify-between shrink-0 bg-[#0e1626] rounded-b-3xl">
-        <div class="flex gap-2">
-          <button onclick="setTeamAsMatchup('A')" class="px-3 py-1.5 bg-rose-950 text-rose-300 text-xs font-bold rounded-lg border border-rose-800">팀A로 비교</button>
-          <button onclick="setTeamAsMatchup('B')" class="px-3 py-1.5 bg-sky-950 text-sky-300 text-xs font-bold rounded-lg border border-sky-800">팀B로 비교</button>
-        </div>
-        <div class="flex gap-2">
-          <button onclick="focusTeamOnMap()" class="px-3 py-1.5 bg-emerald-700 text-white text-xs font-bold rounded-lg"><i class="fa-solid fa-map-location-dot"></i> 미국 지도</button>
-          <button onclick="closeTeamModal()" class="px-4 py-1.5 bg-slate-800 text-white text-xs font-bold rounded-lg">닫기</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
-
-  <script>
-  const NFL_TEAMS = [
-    { id:'buf', nameKo:'버펄로 빌스', nameEn:'Buffalo Bills', conf:'AFC', div:'East', cityKo:'버펄로, 뉴욕', cityEn:'Orchard Park, NY', stadium:'Highmark Stadium', coach:'조 브래디', superBowls:'0회', lat:42.7738, lng:-78.7870, colors:{primary:'#00338D', secondary:'#C60C30'}, starters:{qb:{name:'조시 앨런',number:17}, rb:{name:'제임스 쿡',number:4}, wr:{name:'칼릴 샤키어',number:10}}, stars:[{name:'조시 앨런',pos:'QB',number:17,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3918298.png',desc:'강견 파워 러싱 듀얼스렛'}, {name:'그렉 루소',pos:'DE',number:50,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4361313.png',desc:'포켓 붕괴 엣지러셔'}, {name:'제임스 쿡',pos:'RB',number:4,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4360233.png',desc:'폭발적 패스캐칭 RB'}, {name:'테런 존슨',pos:'CB',number:7,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3120348.png',desc:'리그 최고 락다운 슬롯'}] },
-    { id:'mia', nameKo:'마이애미 돌핀스', nameEn:'Miami Dolphins', conf:'AFC', div:'East', cityKo:'마이애미, 플로리다', cityEn:'Miami Gardens, FL', stadium:'Hard Rock Stadium', coach:'제프 해플리', superBowls:'2회', lat:25.9580, lng:-80.2389, colors:{primary:'#008E97', secondary:'#FC4C02'}, starters:{qb:{name:'투아 텅오바일로아',number:1}, rb:{name:'디본 에이첸',number:28}, wr:{name:'타이릭 힐',number:10}}, stars:[{name:'타이릭 힐',pos:'WR',number:10,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3116406.png',desc:'최강 스피드스터 치타'}, {name:'제일런 램지',pos:'CB',number:5,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3045373.png',desc:'락다운 피지컬 코너백'}, {name:'투아 텅오바일로아',pos:'QB',number:1,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4241479.png',desc:'초고속 릴리즈 쿼터백'}, {name:'제일런 와들',pos:'WR',number:17,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4372016.png',desc:'듀얼 스피드 리시버'}] },
-    { id:'ne', nameKo:'뉴잉글랜드 패트리어츠', nameEn:'New England Patriots', conf:'AFC', div:'East', cityKo:'폭스버러, 매사추세츠', cityEn:'Foxborough, MA', stadium:'Gillette Stadium', coach:'마이크 브레이블', superBowls:'6회', lat:42.0909, lng:-71.2643, colors:{primary:'#002244', secondary:'#C60C30'}, starters:{qb:{name:'드레이크 메이',number:10}, rb:{name:'라몬드레 스티븐슨',number:38}, wr:{name:'디마리오 더글라스',number:3}}, stars:[{name:'드레이크 메이',pos:'QB',number:10,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4431452.png',desc:'패트리어츠 재건의 영건'}, {name:'크리스찬 바모어',pos:'DT',number:90,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4372024.png',desc:'인테리어 파괴 수비태클'}, {name:'라몬드레 스티븐슨',pos:'RB',number:38,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4569173.png',desc:'강력한 돌파력 RB'}, {name:'크리스찬 곤잘레스',pos:'CB',number:0,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4429013.png',desc:'1번 리시버 봉쇄 CB'}] },
-    { id:'nyj', nameKo:'뉴욕 제츠', nameEn:'New York Jets', conf:'AFC', div:'East', cityKo:'이스트 러더퍼드, 뉴저지', cityEn:'East Rutherford, NJ', stadium:'MetLife Stadium', coach:'에런 글렌', superBowls:'1회', lat:40.8128, lng:-74.0742, colors:{primary:'#125740', secondary:'#000000'}, starters:{qb:{name:'지노 스미스',number:7}, rb:{name:'브리스 홀',number:20}, wr:{name:'개럿 윌슨',number:17}}, stars:[{name:'지노 스미스',pos:'QB',number:7,img:'https://a.espncdn.com/i/headshots/nfl/players/full/15864.png',desc:'새 캡틴 베테랑 패서'}, {name:'소스 가드너',pos:'CB',number:1,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4427218.png',desc:'특급 락다운 코너백'}, {name:'개럿 윌슨',pos:'WR',number:17,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4426515.png',desc:'아크로바틱 캐치 에이스'}, {name:'퀸넨 윌리엄스',pos:'DT',number:95,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4040982.png',desc:'중앙 파괴 수비 태클'}] },
-    
-    // Pittsburgh Steelers (Verified: McCarthy, Rodgers, Watt, Metcalf, Heyward, Warren)
-    { id:'pit', nameKo:'피츠버그 스틸러스', nameEn:'Pittsburgh Steelers', conf:'AFC', div:'North', cityKo:'피츠버그, 펜실베이니아', cityEn:'Pittsburgh, PA', stadium:'Acrisure Stadium', coach:'마이크 매카시', superBowls:'6회', lat:40.4468, lng:-80.0158, colors:{primary:'#FFB612', secondary:'#101820'}, starters:{qb:{name:'에런 로저스',number:8}, rb:{name:'제일린 워렌',number:30}, wr:{name:'DK 멧캐프',number:4}}, stars:[{name:'에런 로저스',pos:'QB',number:8,img:'https://a.espncdn.com/i/headshots/nfl/players/full/8439.png',desc:'매카시와 재결합한 전설의 사령관'}, {name:'T.J. 와트',pos:'OLB',number:90,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3045282.png',desc:'리그 최강 쌕 마스터'}, {name:'DK 멧캐프',pos:'WR',number:4,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4047650.png',desc:'피츠버그의 괴물 1번 리시버'}, {name:'카메론 헤이워드',pos:'DT',number:97,img:'https://a.espncdn.com/i/headshots/nfl/players/full/13977.png',desc:'스틸러스 수비 라인의 영원한 심장'}] },
-    
-    { id:'bal', nameKo:'볼티모어 레이븐스', nameEn:'Baltimore Ravens', conf:'AFC', div:'North', cityKo:'볼티모어, 메릴랜드', cityEn:'Baltimore, MD', stadium:'M&T Bank Stadium', coach:'제시 민터', superBowls:'2회', lat:39.2780, lng:-76.6227, colors:{primary:'#241773', secondary:'#000000'}, starters:{qb:{name:'라마 잭슨',number:8}, rb:{name:'데릭 헨리',number:22}, wr:{name:'제이 플라워스',number:4}}, stars:[{name:'라마 잭슨',pos:'QB',number:8,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3916387.png',desc:'역대급 듀얼스렛 MVP'}, {name:'로콴 스미스',pos:'LB',number:0,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3915189.png',desc:'수비진 야전사령관'}, {name:'데릭 헨리',pos:'RB',number:22,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3043078.png',desc:'무자비한 킹 헨리'}, {name:'카일 해밀턴',pos:'S',number:14,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4426387.png',desc:'전천후 특급 세이프티'}] },
-    { id:'cin', nameKo:'신시내티 벵골스', nameEn:'Cincinnati Bengals', conf:'AFC', div:'North', cityKo:'신시내티, 오하이오', cityEn:'Cincinnati, OH', stadium:'Paycor Stadium', coach:'잭 테일러', superBowls:'0회', lat:39.0955, lng:-84.5161, colors:{primary:'#FB4F14', secondary:'#000000'}, starters:{qb:{name:'조 버로우',number:9}, rb:{name:'체이스 브라운',number:30}, wr:{name:'자마 체이스',number:1}}, stars:[{name:'조 버로우',pos:'QB',number:9,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3915511.png',desc:'정밀 타격 컴퓨터 패서'}, {name:'트레이 헨드릭슨',pos:'DE',number:91,img:'https://a.espncdn.com/i/headshots/nfl/players/full/2980140.png',desc:'저돌적 패스러셔'}, {name:'자마 체이스',pos:'WR',number:1,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4362628.png',desc:'폭발적 플레이메이커'}, {name:'티 히긴스',pos:'WR',number:5,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4239993.png',desc:'높은 타점 경합 리시버'}] },
-    { id:'cle', nameKo:'클리블랜드 브라운스', nameEn:'Cleveland Browns', conf:'AFC', div:'North', cityKo:'클리블랜드, 오하이오', cityEn:'Cleveland, OH', stadium:'Huntington Bank Field', coach:'토드 몽큰', superBowls:'0회', lat:41.5061, lng:-81.6995, colors:{primary:'#311D00', secondary:'#FF3C00'}, starters:{qb:{name:'제이미스 윈스턴',number:5}, rb:{name:'닉 첩',number:24}, wr:{name:'제리 주디',number:3}}, stars:[{name:'마일스 개럿',pos:'DE',number:95,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3122132.png',desc:'수비수상 괴물 패스러셔'}, {name:'덴젤 워드',pos:'CB',number:21,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3915420.png',desc:'정상급 코너백'}, {name:'닉 첩',pos:'RB',number:24,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3128720.png',desc:'파워 밸런스 프랜차이즈'}, {name:'데이비드 은조쿠',pos:'TE',number:85,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3123076.png',desc:'경이로운 피지컬 TE'}] },
-
-    { id:'hou', nameKo:'휴스턴 텍선스', nameEn:'Houston Texans', conf:'AFC', div:'South', cityKo:'휴스턴, 텍사스', cityEn:'Houston, TX', stadium:'NRG Stadium', coach:'디메코 라이언스', superBowls:'0회', lat:29.6847, lng:-95.4107, colors:{primary:'#03202F', secondary:'#A71930'}, starters:{qb:{name:'C.J. 스트라우드',number:7}, rb:{name:'조 믹슨',number:28}, wr:{name:'니코 콜린스',number:12}}, stars:[{name:'C.J. 스트라우드',pos:'QB',number:7,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4432577.png',desc:'포켓 침착성 엘리트'}, {name:'윌 앤더슨 주니어',pos:'DE',number:51,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4426385.png',desc:'괴물 엣지러셔'}, {name:'니코 콜린스',pos:'WR',number:12,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4240590.png',desc:'강력한 피지컬 에이스'}, {name:'데릭 스팅리 주니어',pos:'CB',number:24,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4426388.png',desc:'볼 호킹 코너백'}] },
-    { id:'ind', nameKo:'인디애나폴리스 콜츠', nameEn:'Indianapolis Colts', conf:'AFC', div:'South', cityKo:'인디애나폴리스, 인디애나', cityEn:'Indianapolis, IN', stadium:'Lucas Oil Stadium', coach:'셰인 스타이큰', superBowls:'2회', lat:39.7601, lng:-86.1639, colors:{primary:'#002C5F', secondary:'#A2AAAD'}, starters:{qb:{name:'앤서니 리차드슨',number:5}, rb:{name:'조나단 테일러',number:28}, wr:{name:'마이클 피트먼',number:11}}, stars:[{name:'앤서니 리차드슨',pos:'QB',number:5,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4429084.png',desc:'역대급 운동능력 듀얼스렛'}, {name:'디포레스트 벅너',pos:'DT',number:99,img:'https://a.espncdn.com/i/headshots/nfl/players/full/2971282.png',desc:'전천후 태클'}, {name:'조나단 테일러',pos:'RB',number:28,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4242335.png',desc:'폭발적 단독 질주 파워'}, {name:'마이클 피트먼 주니어',pos:'WR',number:11,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4035687.png',desc:'신뢰의 체인 무버'}] },
-    { id:'jax', nameKo:'잭슨빌 재규어스', nameEn:'Jacksonville Jaguars', conf:'AFC', div:'South', cityKo:'잭슨빌, 플로리다', cityEn:'Jacksonville, FL', stadium:'EverBank Stadium', coach:'리암 코언', superBowls:'0회', lat:30.3239, lng:-81.6373, colors:{primary:'#006778', secondary:'#D7A22A'}, starters:{qb:{name:'트레버 로렌스',number:16}, rb:{name:'트래비스 에티엔',number:1}, wr:{name:'브라이언 토마스',number:7}}, stars:[{name:'트레버 로렌스',pos:'QB',number:16,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4360310.png',desc:'프랜차이즈 장기 QB'}, {name:'조시 하인스-앨런',pos:'DE',number:41,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3915239.png',desc:'백필드 파괴 에이스'}, {name:'브라이언 토마스',pos:'WR',number:7,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4431448.png',desc:'직선 스피드 루키'}, {name:'트래비스 에티엔',pos:'RB',number:1,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4240394.png',desc:'날렵한 컷백 RB'}] },
-    { id:'ten', nameKo:'테네시 타이탄스', nameEn:'Tennessee Titans', conf:'AFC', div:'South', cityKo:'내슈빌, 테네시', cityEn:'Nashville, TN', stadium:'Nissan Stadium', coach:'로버트 살레', superBowls:'0회', lat:36.1665, lng:-86.7713, colors:{primary:'#0C2340', secondary:'#4B92DB'}, starters:{qb:{name:'윌 레비스',number:8}, rb:{name:'토니 폴라드',number:20}, wr:{name:'캘빈 리들리',number:0}}, stars:[{name:'제프리 시몬스',pos:'DT',number:98,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4035369.png',desc:'중앙 지배 라인맨'}, {name:'라도리우스 스니드',pos:'CB',number:38,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4038480.png',desc:'터프 프레스 맨투맨'}, {name:'토니 폴라드',pos:'RB',number:20,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3916148.png',desc:'외곽 러싱 리시빙 RB'}, {name:'캘빈 리들리',pos:'WR',number:0,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3925356.png',desc:'정교한 세퍼레이션'}] },
-
-    { id:'kc', nameKo:'캔자스시티 치프스', nameEn:'Kansas City Chiefs', conf:'AFC', div:'West', cityKo:'캔자스시티, 미주리', cityEn:'Kansas City, MO', stadium:'Arrowhead Stadium', coach:'앤디 리드', superBowls:'4회', lat:39.0489, lng:-94.4839, colors:{primary:'#E31837', secondary:'#FFB81C'}, starters:{qb:{name:'패트릭 마홈스',number:15}, rb:{name:'아이재아 파체코',number:10}, wr:{name:'자비어 워디',number:1}}, stars:[{name:'패트릭 마홈스',pos:'QB',number:15,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3139477.png',desc:'현존 최고의 마법사'}, {name:'크리스 존스',pos:'DT',number:95,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3045300.png',desc:'수비진 기둥 쌕 메이커'}, {name:'트래비스 켈시',pos:'TE',number:87,img:'https://a.espncdn.com/i/headshots/nfl/players/full/15847.png',desc:'전설의 타이트엔드'}, {name:'자비어 워디',pos:'WR',number:1,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4685383.png',desc:'NFL 신기록 딥 스피드건'}] },
-    { id:'lac', nameKo:'로스앤젤레스 차저스', nameEn:'Los Angeles Chargers', conf:'AFC', div:'West', cityKo:'잉글우드, 캘리포니아', cityEn:'Inglewood, CA', stadium:'SoFi Stadium', coach:'짐 하보', superBowls:'0회', lat:33.9535, lng:-118.3390, colors:{primary:'#0080C6', secondary:'#FFC20E'}, starters:{qb:{name:'저스틴 허버트',number:10}, rb:{name:'J.K. 도빈스',number:27}, wr:{name:'래드 맥콘키',number:15}}, stars:[{name:'저스틴 허버트',pos:'QB',number:10,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4038941.png',desc:'레이저 엘리트 암'}, {name:'데어원 제임스',pos:'S',number:3,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3915508.png',desc:'수비 전체 커버 리더'}, {name:'칼릴 맥',pos:'OLB',number:52,img:'https://a.espncdn.com/i/headshots/nfl/players/full/16710.png',desc:'노련한 쌕 아티스트'}, {name:'래드 맥콘키',pos:'WR',number:15,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4431415.png',desc:'오픈 찬스 특급 신인'}] },
-    { id:'den', nameKo:'덴버 브롱코스', nameEn:'Denver Broncos', conf:'AFC', div:'West', cityKo:'덴버, 콜로라도', cityEn:'Denver, CO', stadium:'Empower Field', coach:'숀 페이튼', superBowls:'3회', lat:39.7439, lng:-105.0201, colors:{primary:'#FB4F14', secondary:'#002244'}, starters:{qb:{name:'보 닉스',number:10}, rb:{name:'자본테 윌리엄스',number:33}, wr:{name:'코트랜드 서튼',number:14}}, stars:[{name:'패트릭 서탠 2세',pos:'CB',number:2,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4362629.png',desc:'No.1 셧다운 코너백'}, {name:'닉 보니토',pos:'OLB',number:42,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4361529.png',desc:'폭발적 벤딩 돌격대장'}, {name:'보 닉스',pos:'QB',number:10,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4426338.png',desc:'페이튼 맞춤형 기동력 QB'}, {name:'코트랜드 서튼',pos:'WR',number:14,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3128429.png',desc:'레드존 득점 머신'}] },
-    { id:'lv', nameKo:'라스베이거스 레이더스', nameEn:'Las Vegas Raiders', conf:'AFC', div:'West', cityKo:'라스베이거스, 네바다', cityEn:'Las Vegas, NV', stadium:'Allegiant Stadium', coach:'클린트 큐비악', superBowls:'3회', lat:36.0909, lng:-115.1833, colors:{primary:'#000000', secondary:'#A5ACAF'}, starters:{qb:{name:'가드너 민슈',number:15}, rb:{name:'자미어 화이트',number:3}, wr:{name:'자코비 마이어스',number:16}}, stars:[{name:'맥스 크로스비',pos:'DE',number:98,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3916666.png',desc:'무한 모터 레이더스 심장'}, {name:'크리스찬 윌킨스',pos:'DT',number:94,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3915510.png',desc:'런 스터핑 태클'}, {name:'브록 바우어스',pos:'TE',number:89,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4432665.png',desc:'스피드 괴물 신인 TE'}, {name:'자코비 마이어스',pos:'WR',number:16,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3916960.png',desc:'서드다운 믿을맨'}] },
-
-    { id:'phi', nameKo:'필라델피아 이글스', nameEn:'Philadelphia Eagles', conf:'NFC', div:'East', cityKo:'필라델피아, PA', cityEn:'Philadelphia, PA', stadium:'Lincoln Financial Field', coach:'닉 시리아니', superBowls:'1회', lat:39.9008, lng:-75.1675, colors:{primary:'#004C54', secondary:'#A5ACAF'}, starters:{qb:{name:'제일런 허츠',number:1}, rb:{name:'사콴 바클리',number:26}, wr:{name:'A.J. 브라운',number:11}}, stars:[{name:'사콴 바클리',pos:'RB',number:26,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3929630.png',desc:'지상 폭격 슈퍼스타'}, {name:'제일런 카터',pos:'DT',number:98,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4430822.png',desc:'불도저 수비 태클'}, {name:'제일런 허츠',pos:'QB',number:1,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4040715.png',desc:'터치다운 제조 사령관'}, {name:'A.J. 브라운',pos:'WR',number:11,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4047646.png',desc:'최강 피지컬 리시버'}] },
-    { id:'dal', nameKo:'댈러스 카우보이스', nameEn:'Dallas Cowboys', conf:'NFC', div:'East', cityKo:'알링턴, 텍사스', cityEn:'Arlington, TX', stadium:'AT&T Stadium', coach:'브라이언 쇼텐하이머', superBowls:'5회', lat:32.7473, lng:-97.0945, colors:{primary:'#003594', secondary:'#041E42'}, starters:{qb:{name:'닥 프레스콧',number:4}, rb:{name:'리코 도들',number:23}, wr:{name:'시디 램',number:88}}, stars:[{name:'마이카 파슨스',pos:'DE',number:11,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4361423.png',desc:'슈퍼 웨폰 엣지러셔'}, {name:'시디 램',pos:'WR',number:88,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4241389.png',desc:'역대급 생산력 WR'}, {name:'닥 프레스콧',pos:'QB',number:4,img:'https://a.espncdn.com/i/headshots/nfl/players/full/2577417.png',desc:'포켓 조율 베테랑 리더'}, {name:'트레본 딕스',pos:'CB',number:7,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4038755.png',desc:'인터셉션 볼호크'}] },
-    { id:'wsh', nameKo:'워싱턴 커맨더스', nameEn:'Washington Commanders', conf:'NFC', div:'East', cityKo:'랜도버, 메릴랜드', cityEn:'Landover, MD', stadium:'Northwest Stadium', coach:'댄 퀸', superBowls:'3회', lat:38.9076, lng:-76.8645, colors:{primary:'#5A1414', secondary:'#FFB612'}, starters:{qb:{name:'제이든 대니얼스',number:5}, rb:{name:'브라이언 로빈슨',number:8}, wr:{name:'테리 맥클로린',number:17}}, stars:[{name:'제이든 대니얼스',pos:'QB',number:5,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4426348.png',desc:'수도 열광 듀얼스렛'}, {name:'바비 와그너',pos:'LB',number:54,img:'https://a.espncdn.com/i/headshots/nfl/players/full/14979.png',desc:'명전 입성 사령관'}, {name:'테리 맥클로린',pos:'WR',number:17,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3121422.png',desc:'꾸준한 캐치 지주'}, {name:'브라이언 로빈슨',pos:'RB',number:8,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4241474.png',desc:'터프 러너'}] },
-    { id:'nyg', nameKo:'뉴욕 자이언츠', nameEn:'New York Giants', conf:'NFC', div:'East', cityKo:'이스트 러더퍼드, 뉴저지', cityEn:'East Rutherford, NJ', stadium:'MetLife Stadium', coach:'존 하보', superBowls:'4회', lat:40.8135, lng:-74.0744, colors:{primary:'#0B2265', secondary:'#A71930'}, starters:{qb:{name:'드류 록',number:2}, rb:{name:'타이론 트레이시',number:29}, wr:{name:'말릭 네이버스',number:1}}, stars:[{name:'말릭 네이버스',pos:'WR',number:1,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4567048.png',desc:'폭발적 질주 루키'}, {name:'덱스터 로렌스',pos:'DT',number:97,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4035495.png',desc:'압도적 노즈태클'}, {name:'브라이언 번스',pos:'OLB',number:0,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4035637.png',desc:'엘리트 엣지러셔'}, {name:'케이본 티보도',pos:'OLB',number:5,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4426527.png',desc:'클러치 플레이 메이커'}] },
-
-    { id:'det', nameKo:'디트로이트 라이언스', nameEn:'Detroit Lions', conf:'NFC', div:'North', cityKo:'디트로이트, 미시간', cityEn:'Detroit, MI', stadium:'Ford Field', coach:'댄 캠벨', superBowls:'0회', lat:42.3400, lng:-83.0456, colors:{primary:'#0076B6', secondary:'#B0B7BC'}, starters:{qb:{name:'자레드 고프',number:16}, rb:{name:'자미어 깁스',number:26}, wr:{name:'아몬-라 세인트 브라운',number:14}}, stars:[{name:'아몬-라 세인트 브라운',pos:'WR',number:14,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4374302.png',desc:'무결점 캐치 올프로'}, {name:'에이단 허친슨',pos:'DE',number:97,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4360310.png',desc:'라이언스 투혼 엣지'}, {name:'자미어 깁스',pos:'RB',number:26,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4430755.png',desc:'번개 스피드 메이커'}, {name:'페네이 시웰',pos:'OT',number:58,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4374301.png',desc:'리그 최고 오펜시브 태클'}] },
-    { id:'gb', nameKo:'그린베이 패커스', nameEn:'Green Bay Packers', conf:'NFC', div:'North', cityKo:'그린베이, 위스콘신', cityEn:'Green Bay, WI', stadium:'Lambeau Field', coach:'맷 라플로어', superBowls:'4회', lat:44.5013, lng:-88.0622, colors:{primary:'#203731', secondary:'#FFB612'}, starters:{qb:{name:'조던 러브',number:10}, rb:{name:'조쉬 제이콥스',number:8}, wr:{name:'제이든 리드',number:11}}, stars:[{name:'조던 러브',pos:'QB',number:10,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4036378.png',desc:'차세대 프랜차이즈 패서'}, {name:'자비어 맥키니',pos:'S',number:29,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4241470.png',desc:'인터셉션 머신'}, {name:'조쉬 제이콥스',pos:'RB',number:8,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4047365.png',desc:'브루징 러싱 장악'}, {name:'제이어 알렉산더',pos:'CB',number:23,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3915500.png',desc:'락다운 코너백'}] },
-    { id:'min', nameKo:'미네소타 바이킹스', nameEn:'Minnesota Vikings', conf:'NFC', div:'North', cityKo:'미니애폴리스, MN', cityEn:'Minneapolis, MN', stadium:'U.S. Bank Stadium', coach:'케빈 오코넬', superBowls:'0회', lat:44.9735, lng:-93.2575, colors:{primary:'#4F2683', secondary:'#FFC62F'}, starters:{qb:{name:'카일러 머레이',number:1}, rb:{name:'아론 존스',number:33}, wr:{name:'저스틴 제퍼슨',number:18}}, stars:[{name:'저스틴 제퍼슨',pos:'WR',number:18,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4262921.png',desc:'현존 최고 와이드 리시버'}, {name:'조나단 그리너드',pos:'OLB',number:58,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3915160.png',desc:'변칙 블리츠 쌕 엣지'}, {name:'카일러 머레이',pos:'QB',number:1,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3917315.png',desc:'정교한 스크램블 스타'}, {name:'아론 존스',pos:'RB',number:33,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3042519.png',desc:'밸런스 듀얼 RB'}] },
-    { id:'chi', nameKo:'시카고 베어스', nameEn:'Chicago Bears', conf:'NFC', div:'North', cityKo:'시카고, 일리노이', cityEn:'Chicago, IL', stadium:'Soldier Field', coach:'벤 존슨', superBowls:'1회', lat:41.8623, lng:-87.6167, colors:{primary:'#0B162A', secondary:'#C83803'}, starters:{qb:{name:'케일럽 윌리엄스',number:18}, rb:{name:'디안드레 스위프트',number:4}, wr:{name:'D.J. 무어',number:2}}, stars:[{name:'케일럽 윌리엄스',pos:'QB',number:18,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4433970.png',desc:'즉흥적 플레이메이커'}, {name:'몬테즈 스윗',pos:'DE',number:98,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4035070.png',desc:'파워풀 엣지'}, {name:'D.J. 무어',pos:'WR',number:2,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3915416.png',desc:'강력한 런 애프터 캐치'}, {name:'제일런 존슨',pos:'CB',number:1,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4241472.png',desc:'타이트 커버리지 CB'}] },
-
-    { id:'atl', nameKo:'애틀랜타 팰컨스', nameEn:'Atlanta Falcons', conf:'NFC', div:'South', cityKo:'애틀랜타, 조지아', cityEn:'Atlanta, GA', stadium:'Mercedes-Benz Stadium', coach:'케빈 스테판스키', superBowls:'0회', lat:33.7553, lng:-84.4010, colors:{primary:'#A71930', secondary:'#000000'}, starters:{qb:{name:'커크 커즌스',number:18}, rb:{name:'비잔 로빈슨',number:7}, wr:{name:'드레이크 런던',number:5}}, stars:[{name:'비잔 로빈슨',pos:'RB',number:7,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4430807.png',desc:'만능 앵클 브레이커'}, {name:'제시 베이츠 3세',pos:'S',number:3,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3915497.png',desc:'올프로 세이프티'}, {name:'드레이크 런던',pos:'WR',number:5,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4426502.png',desc:'제공권 장악 에이스'}, {name:'카일 피츠',pos:'TE',number:8,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4360248.png',desc:'매치업 파괴 TE'}] },
-    { id:'tb', nameKo:'탬파베이 버커니어스', nameEn:'Tampa Bay Buccaneers', conf:'NFC', div:'South', cityKo:'탬파, 플로리다', cityEn:'Tampa, FL', stadium:'Raymond James Stadium', coach:'토드 볼스', superBowls:'2회', lat:27.9800, lng:-82.5033, colors:{primary:'#D50A0A', secondary:'#0A0A08'}, starters:{qb:{name:'베이커 메이필드',number:6}, rb:{name:'바키 어빙',number:7}, wr:{name:'마이크 에반스',number:13}}, stars:[{name:'마이크 에반스',pos:'WR',number:13,img:'https://a.espncdn.com/i/headshots/nfl/players/full/16725.png',desc:'레드존 득점 머신'}, {name:'앙투안 윈필드 주니어',pos:'S',number:31,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4035688.png',desc:'컴플리트 세이프티'}, {name:'베이커 메이필드',pos:'QB',number:6,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3052587.png',desc:'불타는 투지 사령관'}, {name:'크리스 고드윈',pos:'WR',number:14,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3116165.png',desc:'신뢰의 엘리트 리시버'}] },
-    { id:'no', nameKo:'뉴올리언스 세인츠', nameEn:'New Orleans Saints', conf:'NFC', div:'South', cityKo:'뉴올리언스, LA', cityEn:'New Orleans, LA', stadium:'Caesars Superdome', coach:'켈런 무어', superBowls:'1회', lat:29.9511, lng:-90.0812, colors:{primary:'#D3BC8D', secondary:'#101820'}, starters:{qb:{name:'데릭 카',number:4}, rb:{name:'알빈 카마라',number:41}, wr:{name:'크리스 올라브',number:12}}, stars:[{name:'알빈 카마라',pos:'RB',number:41,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3054850.png',desc:'듀얼 러싱/리시빙 머신'}, {name:'데마리오 데이비스',pos:'LB',number:56,img:'https://a.espncdn.com/i/headshots/nfl/players/full/14986.png',desc:'수비진 지휘 베테랑'}, {name:'크리스 올라브',pos:'WR',number:12,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4361370.png',desc:'매끄러운 라우트 1번'}, {name:'카메론 조던',pos:'DE',number:94,img:'https://a.espncdn.com/i/headshots/nfl/players/full/13971.png',desc:'역대 최다 쌕 레전드'}] },
-    { id:'car', nameKo:'캐롤라이나 팬서스', nameEn:'Carolina Panthers', conf:'NFC', div:'South', cityKo:'샬럿, NC', cityEn:'Charlotte, NC', stadium:'Bank of America Stadium', coach:'데이브 카날레스', superBowls:'0회', lat:35.2258, lng:-80.8528, colors:{primary:'#0085CA', secondary:'#101820'}, starters:{qb:{name:'브라이스 영',number:9}, rb:{name:'추바 허바드',number:30}, wr:{name:'자비어 레겟',number:17}}, stars:[{name:'브라이스 영',pos:'QB',number:9,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4685701.png',desc:'하이즈먼 트로피 QB'}, {name:'데릭 브라운',pos:'DT',number:95,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4035494.png',desc:'인테리어 런 디펜더'}, {name:'추바 허바드',pos:'RB',number:30,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4241386.png',desc:'성실한 인사이드 러너'}, {name:'자비어 레겟',pos:'WR',number:17,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4427214.png',desc:'강력한 차세대 타깃'}] },
-
-    { id:'sf', nameKo:'샌프란시스코 49ers', nameEn:'San Francisco 49ers', conf:'NFC', div:'West', cityKo:'산타클라라, CA', cityEn:'Santa Clara, CA', stadium:'Levi\'s Stadium', coach:'카일 섀너핸', superBowls:'5회', lat:37.4033, lng:-121.9694, colors:{primary:'#AA0000', secondary:'#B3995D'}, starters:{qb:{name:'브록 퍼디',number:13}, rb:{name:'크리스찬 맥카프리',number:23}, wr:{name:'디보 새뮤얼',number:1}}, stars:[{name:'크리스찬 맥카프리',pos:'RB',number:23,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3117251.png',desc:'완벽한 듀얼스렛 RB'}, {name:'닉 보사',pos:'DE',number:97,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4040605.png',desc:'공격파괴 엣지러셔'}, {name:'브록 퍼디',pos:'QB',number:13,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4361741.png',desc:'기적을 넘어선 주전'}, {name:'프레드 워너',pos:'LB',number:54,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3128424.png',desc:'NFL No.1 라인배커'}] },
-    { id:'lar', nameKo:'로스앤젤레스 램스', nameEn:'Los Angeles Rams', conf:'NFC', div:'West', cityKo:'잉글우드, 캘리포니아', cityEn:'Inglewood, CA', stadium:'SoFi Stadium', coach:'숀 맥베이', superBowls:'2회', lat:33.9535, lng:-118.3385, colors:{primary:'#003594', secondary:'#FFA300'}, starters:{qb:{name:'매튜 스태포드',number:9}, rb:{name:'카이런 윌리엄스',number:23}, wr:{name:'푸카 나쿠아',number:17}}, stars:[{name:'푸카 나쿠아',pos:'WR',number:17,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4426515.png',desc:'신인 최다 리셉션 터프 WR'}, {name:'쿠퍼 컵',pos:'WR',number:10,img:'https://a.espncdn.com/i/headshots/nfl/players/full/2976316.png',desc:'트리플 크라운 슬롯'}, {name:'매튜 스태포드',pos:'QB',number:9,img:'https://a.espncdn.com/i/headshots/nfl/players/full/12483.png',desc:'노룩 패스 슈퍼볼 챔프'}, {name:'카이런 윌리엄스',pos:'RB',number:23,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4427429.png',desc:'득점 본능 장악 RB'}] },
-    { id:'ari', nameKo:'애리조나 카디널스', nameEn:'Arizona Cardinals', conf:'NFC', div:'West', cityKo:'글렌데일, 애리조나', cityEn:'Glendale, AZ', stadium:'State Farm Stadium', coach:'마이크 라플루어', superBowls:'0회', lat:33.5276, lng:-112.2626, colors:{primary:'#97233F', secondary:'#000000'}, starters:{qb:{name:'자코비 브리셋',number:7}, rb:{name:'제임스 코너',number:6}, wr:{name:'마빈 해리슨 주니어',number:18}}, stars:[{name:'마빈 해리슨 주니어',pos:'WR',number:18,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4432708.png',desc:'미래의 슈퍼스타 타깃'}, {name:'부다 베이커',pos:'S',number:3,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3127274.png',desc:'정신적 지주 세이프티'}, {name:'트레이 맥브라이드',pos:'TE',number:85,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4361309.png',desc:'전진력 강한 영건 TE'}, {name:'제임스 코너',pos:'RB',number:6,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3045147.png',desc:'지상전의 심장'}] },
-    { id:'sea', nameKo:'시애틀 시호크스', nameEn:'Seattle Seahawks', conf:'NFC', div:'West', cityKo:'시애틀, 워싱턴', cityEn:'Seattle, WA', stadium:'Lumen Field', coach:'마이크 맥도널드', superBowls:'1회', lat:47.5952, lng:-122.3316, colors:{primary:'#002244', secondary:'#69BE28'}, starters:{qb:{name:'샘 다놀드',number:14}, rb:{name:'케네스 워커 3세',number:9}, wr:{name:'잭슨 스미스-엔직바',number:11}}, stars:[{name:'잭슨 스미스-엔직바',pos:'WR',number:11,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4430878.png',desc:'에이스 슬롯 타깃'}, {name:'데본 위더스푼',pos:'CB',number:21,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4428988.png',desc:'저돌적 태클 특급 CB'}, {name:'케네스 워커 3세',pos:'RB',number:9,img:'https://a.espncdn.com/i/headshots/nfl/players/full/4567048.png',desc:'엘리트 터치다운 러너'}, {name:'샘 다놀드',pos:'QB',number:14,img:'https://a.espncdn.com/i/headshots/nfl/players/full/3912547.png',desc:'공격을 이끄는 사령관'}] }
-  ];
-
-  // 2026 Season Real Official Schedule & 100% Verified Match Database (Weeks 1, 2, 3, 4 Results & Week 5 Upcoming)
+  // 2026 Season Real Official Schedule & 100% Verified Match Database (Weeks 1~6 Results & Week 7 Upcoming)
   const NFL_RECORDS_DATA = {
-    // Pittsburgh Steelers (2승 2패, PF:77, PA:87, Diff:-10)
-    pit: { wins:2, losses:2, ties:0, pct:'.500', divRank:'3위', streak:'1연패', pf:77, pa:87, diff:'-10', lastGame:{short:'@ CLE 24-27 패', isWin:false}, ppg:19.25, ppgR:22, papg:21.75, papgR:14, passYds:218.0, passR:19, rushYds:92.5, rushR:26, sacks:14, sacksR:3, toMargin:0, toR:15, thirdDown:37.5, thirdR:21,
+    // Pittsburgh Steelers (4승 2패, PF:124, PA:124, Diff:0)
+    pit: { wins:4, losses:2, ties:0, pct:'.667', divRank:'1위', streak:'2연승', pf:124, pa:124, diff:'0', lastGame:{short:'vs BAL 20-17 승', isWin:true}, ppg:20.67, ppgR:18, papg:20.67, papgR:9, passYds:222.0, passR:18, rushYds:98.5, rushR:23, sacks:21, sacksR:2, toMargin:2, toR:8, thirdDown:39.5, thirdR:16,
       games: [
         { week:1, date:'9월 13일', homeAway:'HOME', oppId:'atl', oppName:'애틀랜타 팰컨스', myScore:20, oppScore:13, isWin:true, diff:'+7', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'AWAY', oppId:'ne', oppName:'뉴잉글랜드 패트리어츠', myScore:3, oppScore:20, isWin:false, diff:'-17', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'HOME', oppId:'cin', oppName:'신시내티 벵골스', myScore:30, oppScore:27, isWin:true, diff:'+3', status:'FINAL' },
         { week:4, date:'10월 1일', homeAway:'AWAY', oppId:'cle', oppName:'클리블랜드 브라운스', myScore:24, oppScore:27, isWin:false, diff:'-3', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'ind', oppName:'인디애나폴리스 콜츠', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'ind', oppName:'인디애나폴리스 콜츠', myScore:27, oppScore:20, isWin:true, diff:'+7', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'HOME', oppId:'bal', oppName:'볼티모어 레이븐스', myScore:20, oppScore:17, isWin:true, diff:'+3', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'AWAY', oppId:'nyj', oppName:'뉴욕 제츠', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // Cleveland Browns (3승 1패, PF:81, PA:95, Diff:-14)
-    cle: { wins:3, losses:1, ties:0, pct:'.750', divRank:'1위', streak:'3연승', pf:81, pa:95, diff:'-14', lastGame:{short:'vs PIT 27-24 승', isWin:true}, ppg:20.25, ppgR:19, papg:23.75, papgR:18, passYds:205.0, passR:23, rushYds:115.0, rushR:17, sacks:15, sacksR:2, toMargin:1, toR:12, thirdDown:36.0, thirdR:23,
+    // Cleveland Browns (4승 2패, PF:125, PA:139, Diff:-14)
+    cle: { wins:4, losses:2, ties:0, pct:'.667', divRank:'2위', streak:'1연승', pf:125, pa:139, diff:'-14', lastGame:{short:'vs CIN 23-20 승', isWin:true}, ppg:20.83, ppgR:17, papg:23.17, papgR:16, passYds:208.0, passR:22, rushYds:118.0, rushR:15, sacks:20, sacksR:4, toMargin:1, toR:11, thirdDown:37.0, thirdR:21,
       games: [
         { week:1, date:'9월 13일', homeAway:'AWAY', oppId:'jax', oppName:'잭슨빌 재규어스', myScore:10, oppScore:34, isWin:false, diff:'-24', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'AWAY', oppId:'tb', oppName:'탬파베이 버커니어스', myScore:23, oppScore:19, isWin:true, diff:'+4', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'HOME', oppId:'car', oppName:'캐롤라이나 팬서스', myScore:21, oppScore:18, isWin:true, diff:'+3', status:'FINAL' },
         { week:4, date:'10월 1일', homeAway:'HOME', oppId:'pit', oppName:'피츠버그 스틸러스', myScore:27, oppScore:24, isWin:true, diff:'+3', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'nyj', oppName:'뉴욕 제츠', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'car', oppName:'캐롤라이나 팬서스', myScore:21, oppScore:24, isWin:false, diff:'-3', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'HOME', oppId:'cin', oppName:'신시내티 벵골스', myScore:23, oppScore:20, isWin:true, diff:'+3', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'AWAY', oppId:'mia', oppName:'마이애미 돌핀스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // Baltimore Ravens (3승 1패, PF:116, PA:96, Diff:+20)
-    bal: { wins:3, losses:1, ties:0, pct:'.750', divRank:'2위', streak:'2연승', pf:116, pa:96, diff:'+20', lastGame:{short:'vs TEN 24-18 승', isWin:true}, ppg:29.0, ppgR:4, papg:24.0, papgR:19, passYds:240.0, passR:9, rushYds:182.0, rushR:1, sacks:13, sacksR:5, toMargin:2, toR:6, thirdDown:47.0, thirdR:3,
+    // Baltimore Ravens (4승 2패, PF:164, PA:140, Diff:+24)
+    bal: { wins:4, losses:2, ties:0, pct:'.667', divRank:'3위', streak:'1연패', pf:164, pa:140, diff:'+24', lastGame:{short:'@ PIT 17-20 패', isWin:false}, ppg:27.33, ppgR:5, papg:23.33, papgR:17, passYds:235.0, passR:11, rushYds:178.0, rushR:1, sacks:19, sacksR:5, toMargin:2, toR:7, thirdDown:46.0, thirdR:4,
       games: [
         { week:1, date:'9월 13일', homeAway:'AWAY', oppId:'ind', oppName:'인디애나폴리스 콜츠', myScore:41, oppScore:23, isWin:true, diff:'+18', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'HOME', oppId:'no', oppName:'뉴올리언스 세인츠', myScore:17, oppScore:24, isWin:false, diff:'-7', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'AWAY', oppId:'dal', oppName:'댈러스 카우보이스', myScore:34, oppScore:31, isWin:true, diff:'+3', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'HOME', oppId:'ten', oppName:'테네시 타이탄스', myScore:24, oppScore:18, isWin:true, diff:'+6', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'atl', oppName:'애틀랜타 팰컨스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'atl', oppName:'애틀랜타 팰컨스', myScore:31, oppScore:24, isWin:true, diff:'+7', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'AWAY', oppId:'pit', oppName:'피츠버그 스틸러스', myScore:17, oppScore:20, isWin:false, diff:'-3', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'HOME', oppId:'ne', oppName:'뉴잉글랜드 패트리어츠', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // Cincinnati Bengals (2승 2패, PF:97, PA:85, Diff:+12)
-    cin: { wins:2, losses:2, ties:0, pct:'.500', divRank:'4위', streak:'2연패', pf:97, pa:85, diff:'+12', lastGame:{short:'vs JAX 17-22 패', isWin:false}, ppg:24.25, ppgR:12, papg:21.25, papgR:13, passYds:274.0, passR:2, rushYds:98.0, rushR:24, sacks:9, sacksR:16, toMargin:0, toR:14, thirdDown:43.0, thirdR:9,
+    // Cincinnati Bengals (3승 3패, PF:145, PA:122, Diff:+23)
+    cin: { wins:3, losses:3, ties:0, pct:'.500', divRank:'4위', streak:'1연패', pf:145, pa:122, diff:'+23', lastGame:{short:'@ CLE 20-23 패', isWin:false}, ppg:24.17, ppgR:12, papg:20.33, papgR:8, passYds:268.0, passR:3, rushYds:99.0, rushR:22, sacks:14, sacksR:15, toMargin:0, toR:14, thirdDown:42.5, thirdR:10,
       games: [
         { week:1, date:'9월 13일', homeAway:'HOME', oppId:'tb', oppName:'탬파베이 버커니어스', myScore:33, oppScore:27, isWin:true, diff:'+6', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'AWAY', oppId:'hou', oppName:'휴스턴 텍선스', myScore:20, oppScore:6, isWin:true, diff:'+14', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'AWAY', oppId:'pit', oppName:'피츠버그 스틸러스', myScore:27, oppScore:30, isWin:false, diff:'-3', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'HOME', oppId:'jax', oppName:'잭슨빌 재규어스', myScore:17, oppScore:22, isWin:false, diff:'-5', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'mia', oppName:'마이애미 돌핀스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'mia', oppName:'마이애미 돌핀스', myScore:28, oppScore:14, isWin:true, diff:'+14', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'AWAY', oppId:'cle', oppName:'클리블랜드 브라운스', myScore:20, oppScore:23, isWin:false, diff:'-3', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'HOME', oppId:'buf', oppName:'버펄로 빌스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
 
-    // Buffalo Bills (3승 1패, PF:127, PA:107, Diff:+20)
-    buf: { wins:3, losses:1, ties:0, pct:'.750', divRank:'1위', streak:'1연패', pf:127, pa:107, diff:'+20', lastGame:{short:'vs NE 26-29 패', isWin:false}, ppg:31.75, ppgR:2, papg:26.75, papgR:24, passYds:255.0, passR:5, rushYds:145.0, rushR:4, sacks:12, sacksR:7, toMargin:3, toR:3, thirdDown:48.0, thirdR:2,
+    // Buffalo Bills (5승 1패, PF:188, PA:147, Diff:+41)
+    buf: { wins:5, losses:1, ties:0, pct:'.833', divRank:'1위', streak:'2연승', pf:188, pa:147, diff:'+41', lastGame:{short:'vs NYJ 27-13 승', isWin:true}, ppg:31.33, ppgR:2, papg:24.50, papgR:21, passYds:258.0, passR:4, rushYds:142.0, rushR:5, sacks:18, sacksR:6, toMargin:4, toR:2, thirdDown:47.5, thirdR:3,
       games: [
         { week:1, date:'9월 13일', homeAway:'AWAY', oppId:'hou', oppName:'휴스턴 텍선스', myScore:36, oppScore:31, isWin:true, diff:'+5', status:'FINAL' },
         { week:2, date:'9월 18일', homeAway:'HOME', oppId:'det', oppName:'디트로이트 라이언스', myScore:41, oppScore:31, isWin:true, diff:'+10', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'HOME', oppId:'lac', oppName:'로스앤젤레스 차저스', myScore:24, oppScore:16, isWin:true, diff:'+8', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'HOME', oppId:'ne', oppName:'뉴잉글랜드 패트리어츠', myScore:26, oppScore:29, isWin:false, diff:'-3', status:'FINAL' },
-        { week:5, date:'10월 12일', homeAway:'AWAY', oppId:'lar', oppName:'로스앤젤레스 램스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 12일', homeAway:'AWAY', oppId:'lar', oppName:'로스앤젤레스 램스', myScore:34, oppScore:27, isWin:true, diff:'+7', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'HOME', oppId:'nyj', oppName:'뉴욕 제츠', myScore:27, oppScore:13, isWin:true, diff:'+14', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'AWAY', oppId:'cin', oppName:'신시내티 벵골스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // New England Patriots (2승 2패, PF:65, PA:77, Diff:-12)
-    ne: { wins:2, losses:2, ties:0, pct:'.500', divRank:'2위', streak:'1연승', pf:65, pa:77, diff:'-12', lastGame:{short:'@ BUF 29-26 승', isWin:true}, ppg:16.25, ppgR:28, papg:19.25, papgR:8, passYds:195.0, passR:25, rushYds:118.0, rushR:15, sacks:14, sacksR:4, toMargin:1, toR:9, thirdDown:36.5, thirdR:22,
+    // New England Patriots (4승 2패, PF:112, PA:114, Diff:-2)
+    ne: { wins:4, losses:2, ties:0, pct:'.667', divRank:'2위', streak:'3연승', pf:112, pa:114, diff:'-2', lastGame:{short:'vs MIA 23-16 승', isWin:true}, ppg:18.67, ppgR:23, papg:19.00, papgR:5, passYds:200.0, passR:24, rushYds:121.0, rushR:14, sacks:20, sacksR:3, toMargin:2, toR:9, thirdDown:38.0, thirdR:19,
       games: [
         { week:1, date:'9월 13일', homeAway:'AWAY', oppId:'sea', oppName:'시애틀 시호크스', myScore:10, oppScore:13, isWin:false, diff:'-3', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'HOME', oppId:'pit', oppName:'피츠버그 스틸러스', myScore:20, oppScore:3, isWin:true, diff:'+17', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'AWAY', oppId:'jax', oppName:'잭슨빌 재규어스', myScore:6, oppScore:35, isWin:false, diff:'-29', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'AWAY', oppId:'buf', oppName:'버펄로 빌스', myScore:29, oppScore:26, isWin:true, diff:'+3', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'lv', oppName:'라스베이거스 레이더스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'lv', oppName:'라스베이거스 레이더스', myScore:24, oppScore:21, isWin:true, diff:'+3', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'HOME', oppId:'mia', oppName:'마이애미 돌핀스', myScore:23, oppScore:16, isWin:true, diff:'+7', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'AWAY', oppId:'bal', oppName:'볼티모어 레이븐스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // New York Jets (1승 3패, PF:76, PA:84, Diff:-8)
-    nyj: { wins:1, losses:3, ties:0, pct:'.250', divRank:'3위', streak:'3연패', pf:76, pa:84, diff:'-8', lastGame:{short:'@ CHI 12-23 패', isWin:false}, ppg:19.0, ppgR:23, papg:21.0, papgR:12, passYds:238.0, passR:11, rushYds:95.0, rushR:25, sacks:10, sacksR:14, toMargin:-2, toR:24, thirdDown:39.0, thirdR:17,
+    // New York Jets (1승 5패, PF:106, PA:134, Diff:-28)
+    nyj: { wins:1, losses:5, ties:0, pct:'.167', divRank:'3위', streak:'5연패', pf:106, pa:134, diff:'-28', lastGame:{short:'@ BUF 13-27 패', isWin:false}, ppg:17.67, ppgR:27, papg:22.33, papgR:14, passYds:230.0, passR:13, rushYds:93.0, rushR:27, sacks:14, sacksR:16, toMargin:-4, toR:28, thirdDown:38.0, thirdR:20,
       games: [
         { week:1, date:'9월 13일', homeAway:'AWAY', oppId:'ten', oppName:'테네시 타이탄스', myScore:23, oppScore:10, isWin:true, diff:'+13', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'HOME', oppId:'gb', oppName:'그린베이 패커스', myScore:17, oppScore:20, isWin:false, diff:'-3', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'AWAY', oppId:'det', oppName:'디트로이트 라이언스', myScore:24, oppScore:31, isWin:false, diff:'-7', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'AWAY', oppId:'chi', oppName:'시카고 베어스', myScore:12, oppScore:23, isWin:false, diff:'-11', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'cle', oppName:'클리블랜드 브라운스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'chi', oppName:'시카고 베어스', myScore:17, oppScore:23, isWin:false, diff:'-6', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'AWAY', oppId:'buf', oppName:'버펄로 빌스', myScore:13, oppScore:27, isWin:false, diff:'-14', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'HOME', oppId:'pit', oppName:'피츠버그 스틸러스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // Miami Dolphins (0승 4패, PF:46, PA:101, Diff:-55)
-    mia: { wins:0, losses:4, ties:0, pct:'.000', divRank:'4위', streak:'4연패', pf:46, pa:101, diff:'-55', lastGame:{short:'@ MIN 10-15 패', isWin:false}, ppg:11.5, ppgR:32, papg:25.25, papgR:22, passYds:208.0, passR:22, rushYds:75.0, rushR:31, sacks:7, sacksR:27, toMargin:-5, toR:31, thirdDown:29.5, thirdR:31,
+    // Miami Dolphins (0승 6패, PF:76, PA:152, Diff:-76)
+    mia: { wins:0, losses:6, ties:0, pct:'.000', divRank:'4위', streak:'6연패', pf:76, pa:152, diff:'-76', lastGame:{short:'@ NE 16-23 패', isWin:false}, ppg:12.67, ppgR:32, papg:25.33, papgR:25, passYds:212.0, passR:20, rushYds:78.0, rushR:31, sacks:10, sacksR:28, toMargin:-7, toR:32, thirdDown:30.0, thirdR:31,
       games: [
         { week:1, date:'9월 13일', homeAway:'AWAY', oppId:'lv', oppName:'라스베이거스 레이더스', myScore:13, oppScore:27, isWin:false, diff:'-14', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'AWAY', oppId:'sf', oppName:'샌프란시스코 49ers', myScore:13, oppScore:35, isWin:false, diff:'-22', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'HOME', oppId:'kc', oppName:'캔자스시티 치프스', myScore:10, oppScore:24, isWin:false, diff:'-14', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'AWAY', oppId:'min', oppName:'미네소타 바이킹스', myScore:10, oppScore:15, isWin:false, diff:'-5', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'cin', oppName:'신시내티 벵골스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'cin', oppName:'신시내티 벵골스', myScore:14, oppScore:28, isWin:false, diff:'-14', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'AWAY', oppId:'ne', oppName:'뉴잉글랜드 패트리어츠', myScore:16, oppScore:23, isWin:false, diff:'-7', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'HOME', oppId:'cle', oppName:'클리블랜드 브라운스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
 
-    // Jacksonville Jaguars (3승 1패, PF:104, PA:53, Diff:+51)
-    jax: { wins:3, losses:1, ties:0, pct:'.750', divRank:'1위', streak:'2연승', pf:104, pa:53, diff:'+51', lastGame:{short:'@ CIN 22-17 승', isWin:true}, ppg:26.0, ppgR:8, papg:13.25, papgR:3, passYds:246.0, passR:8, rushYds:130.0, rushR:10, sacks:12, sacksR:8, toMargin:3, toR:2, thirdDown:44.0, thirdR:7,
+    // Jacksonville Jaguars (5승 1패, PF:155, PA:91, Diff:+64)
+    jax: { wins:5, losses:1, ties:0, pct:'.833', divRank:'1위', streak:'4연승', pf:155, pa:91, diff:'+64', lastGame:{short:'vs TEN 27-17 승', isWin:true}, ppg:25.83, ppgR:8, papg:15.17, papgR:2, passYds:248.0, passR:7, rushYds:133.0, rushR:9, sacks:18, sacksR:7, toMargin:5, toR:1, thirdDown:45.0, thirdR:6,
       games: [
         { week:1, date:'9월 13일', homeAway:'HOME', oppId:'cle', oppName:'클리블랜드 브라운스', myScore:34, oppScore:10, isWin:true, diff:'+24', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'AWAY', oppId:'den', oppName:'덴버 브롱코스', myScore:13, oppScore:20, isWin:false, diff:'-7', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'HOME', oppId:'ne', oppName:'뉴잉글랜드 패트리어츠', myScore:35, oppScore:6, isWin:true, diff:'+29', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'AWAY', oppId:'cin', oppName:'신시내티 벵골스', myScore:22, oppScore:17, isWin:true, diff:'+5', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'phi', oppName:'필라델피아 이글스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'phi', oppName:'필라델피아 이글스', myScore:24, oppScore:21, isWin:true, diff:'+3', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'HOME', oppId:'ten', oppName:'테네시 타이탄스', myScore:27, oppScore:17, isWin:true, diff:'+10', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'AWAY', oppId:'ind', oppName:'인디애나폴리스 콜츠', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // Indianapolis Colts (2승 2패, PF:102, PA:104, Diff:-2)
-    ind: { wins:2, losses:2, ties:0, pct:'.500', divRank:'2위', streak:'2연승', pf:102, pa:104, diff:'-2', lastGame:{short:'vs WSH 30-13 승', isWin:true}, ppg:25.5, ppgR:10, papg:26.0, papgR:23, passYds:225.0, passR:16, rushYds:146.0, rushR:3, sacks:8, sacksR:20, toMargin:0, toR:16, thirdDown:42.0, thirdR:12,
+    // Indianapolis Colts (2승 4패, PF:145, PA:157, Diff:-12)
+    ind: { wins:2, losses:4, ties:0, pct:'.333', divRank:'2위', streak:'2연패', pf:145, pa:157, diff:'-12', lastGame:{short:'@ HOU 23-26 패', isWin:false}, ppg:24.17, ppgR:13, papg:26.17, papgR:27, passYds:220.0, passR:19, rushYds:140.0, rushR:6, sacks:12, sacksR:22, toMargin:-1, toR:18, thirdDown:41.0, thirdR:14,
       games: [
         { week:1, date:'9월 13일', homeAway:'HOME', oppId:'bal', oppName:'볼티모어 레이븐스', myScore:23, oppScore:41, isWin:false, diff:'-18', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'AWAY', oppId:'kc', oppName:'캔자스시티 치프스', myScore:30, oppScore:33, isWin:false, diff:'-3', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'HOME', oppId:'hou', oppName:'휴스턴 텍선스', myScore:19, oppScore:17, isWin:true, diff:'+2', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'HOME', oppId:'wsh', oppName:'워싱턴 커맨더스', myScore:30, oppScore:13, isWin:true, diff:'+17', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'pit', oppName:'피츠버그 스틸러스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'pit', oppName:'피츠버그 스틸러스', myScore:20, oppScore:27, isWin:false, diff:'-7', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'AWAY', oppId:'hou', oppName:'휴스턴 텍선스', myScore:23, oppScore:26, isWin:false, diff:'-3', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'HOME', oppId:'jax', oppName:'잭슨빌 재규어스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // Tennessee Titans (0승 4패, PF:55, PA:83, Diff:-28)
-    ten: { wins:0, losses:4, ties:0, pct:'.000', divRank:'3위', streak:'4연패', pf:55, pa:83, diff:'-28', lastGame:{short:'@ BAL 18-24 패', isWin:false}, ppg:13.75, ppgR:30, papg:20.75, papgR:11, passYds:178.0, passR:30, rushYds:99.0, rushR:23, sacks:8, sacksR:22, toMargin:-4, toR:29, thirdDown:33.0, thirdR:28,
-      games: [
-        { week:1, date:'9월 13일', homeAway:'HOME', oppId:'nyj', oppName:'뉴욕 제츠', myScore:10, oppScore:23, isWin:false, diff:'-13', status:'FINAL' },
-        { week:2, date:'9월 20일', homeAway:'HOME', oppId:'phi', oppName:'필라델피아 이글스', myScore:20, oppScore:24, isWin:false, diff:'-4', status:'FINAL' },
-        { week:3, date:'9월 27일', homeAway:'AWAY', oppId:'nyg', oppName:'뉴욕 자이언츠', myScore:7, oppScore:12, isWin:false, diff:'-5', status:'FINAL' },
-        { week:4, date:'10월 4일', homeAway:'AWAY', oppId:'bal', oppName:'볼티모어 레이븐스', myScore:18, oppScore:24, isWin:false, diff:'-6', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'hou', oppName:'휴스턴 텍선스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
-      ]
-    },
-    // Houston Texans (0승 4패, PF:84, PA:109, Diff:-25)
-    hou: { wins:0, losses:4, ties:0, pct:'.000', divRank:'4위', streak:'4연패', pf:84, pa:109, diff:'-25', lastGame:{short:'vs DAL 30-34 패', isWin:false}, ppg:21.0, ppgR:16, papg:27.25, papgR:25, passYds:265.0, passR:4, rushYds:88.0, rushR:28, sacks:10, sacksR:13, toMargin:-2, toR:23, thirdDown:40.0, thirdR:15,
+    // Houston Texans (2승 4패, PF:136, PA:152, Diff:-16)
+    hou: { wins:2, losses:4, ties:0, pct:'.333', divRank:'3위', streak:'2연승', pf:136, pa:152, diff:'-16', lastGame:{short:'vs IND 26-23 승', isWin:true}, ppg:22.67, ppgR:15, papg:25.33, papgR:24, passYds:260.0, passR:5, rushYds:91.0, rushR:28, sacks:15, sacksR:13, toMargin:0, toR:15, thirdDown:41.5, thirdR:12,
       games: [
         { week:1, date:'9월 13일', homeAway:'HOME', oppId:'buf', oppName:'버펄로 빌스', myScore:31, oppScore:36, isWin:false, diff:'-5', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'HOME', oppId:'cin', oppName:'신시내티 벵골스', myScore:6, oppScore:20, isWin:false, diff:'-14', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'AWAY', oppId:'ind', oppName:'인디애나폴리스 콜츠', myScore:17, oppScore:19, isWin:false, diff:'-2', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'HOME', oppId:'dal', oppName:'댈러스 카우보이스', myScore:30, oppScore:34, isWin:false, diff:'-4', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'ten', oppName:'테네시 타이탄스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'ten', oppName:'테네시 타이탄스', myScore:26, oppScore:20, isWin:true, diff:'+6', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'HOME', oppId:'ind', oppName:'인디애나폴리스 콜츠', myScore:26, oppScore:23, isWin:true, diff:'+3', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'HOME', oppId:'kc', oppName:'캔자스시티 치프스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+      ]
+    },
+    // Tennessee Titans (0승 6패, PF:92, PA:136, Diff:-44)
+    ten: { wins:0, losses:6, ties:0, pct:'.000', divRank:'4위', streak:'6연패', pf:92, pa:136, diff:'-44', lastGame:{short:'@ JAX 17-27 패', isWin:false}, ppg:15.33, ppgR:30, papg:22.67, papgR:15, passYds:184.0, passR:29, rushYds:97.0, rushR:24, sacks:12, sacksR:23, toMargin:-5, toR:30, thirdDown:33.5, thirdR:29,
+      games: [
+        { week:1, date:'9월 13일', homeAway:'HOME', oppId:'nyj', oppName:'뉴욕 제츠', myScore:10, oppScore:23, isWin:false, diff:'-13', status:'FINAL' },
+        { week:2, date:'9월 20일', homeAway:'HOME', oppId:'phi', oppName:'필라델피아 이글스', myScore:20, oppScore:24, isWin:false, diff:'-4', status:'FINAL' },
+        { week:3, date:'9월 27일', homeAway:'AWAY', oppId:'nyg', oppName:'뉴욕 자이언츠', myScore:7, oppScore:12, isWin:false, diff:'-5', status:'FINAL' },
+        { week:4, date:'10월 4일', homeAway:'AWAY', oppId:'bal', oppName:'볼티모어 레이븐스', myScore:18, oppScore:24, isWin:false, diff:'-6', status:'FINAL' },
+        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'hou', oppName:'휴스턴 텍선스', myScore:20, oppScore:26, isWin:false, diff:'-6', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'AWAY', oppId:'jax', oppName:'잭슨빌 재규어스', myScore:17, oppScore:27, isWin:false, diff:'-10', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'HOME', oppId:'lac', oppName:'로스앤젤레스 차저스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
 
-    // Kansas City Chiefs (4승 0패, PF:118, PA:77, Diff:+41)
-    kc: { wins:4, losses:0, ties:0, pct:'1.000', divRank:'1위', streak:'4연승', pf:118, pa:77, diff:'+41', lastGame:{short:'@ LV 30-27 승', isWin:true}, ppg:29.5, ppgR:3, papg:19.25, papgR:9, passYds:282.0, passR:1, rushYds:122.0, rushR:12, sacks:13, sacksR:6, toMargin:3, toR:4, thirdDown:49.5, thirdR:1,
+    // Kansas City Chiefs (6승 0패, PF:177, PA:111, Diff:+66)
+    kc: { wins:6, losses:0, ties:0, pct:'1.000', divRank:'1위', streak:'6연승', pf:177, pa:111, diff:'+66', lastGame:{short:'vs DEN 28-17 승', isWin:true}, ppg:29.50, ppgR:3, papg:18.50, papgR:4, passYds:280.0, passR:1, rushYds:125.0, rushR:12, sacks:19, sacksR:5, toMargin:4, toR:3, thirdDown:49.0, thirdR:1,
       games: [
         { week:1, date:'9월 14일', homeAway:'HOME', oppId:'den', oppName:'덴버 브롱코스', myScore:31, oppScore:10, isWin:true, diff:'+21', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'HOME', oppId:'ind', oppName:'인디애나폴리스 콜츠', myScore:33, oppScore:30, isWin:true, diff:'+3', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'AWAY', oppId:'mia', oppName:'마이애미 돌핀스', myScore:24, oppScore:10, isWin:true, diff:'+14', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'AWAY', oppId:'lv', oppName:'라스베이거스 레이더스', myScore:30, oppScore:27, isWin:true, diff:'+3', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'lac', oppName:'로스앤젤레스 차저스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'lac', oppName:'로스앤젤레스 차저스', myScore:31, oppScore:17, isWin:true, diff:'+14', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'HOME', oppId:'den', oppName:'덴버 브롱코스', myScore:28, oppScore:17, isWin:true, diff:'+11', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'AWAY', oppId:'hou', oppName:'휴스턴 텍선스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // Las Vegas Raiders (3승 1패, PF:115, PA:84, Diff:+31)
-    lv: { wins:3, losses:1, ties:0, pct:'.750', divRank:'2위', streak:'1연패', pf:115, pa:84, diff:'+31', lastGame:{short:'vs KC 27-30 패', isWin:false}, ppg:28.75, ppgR:5, papg:21.0, papgR:11, passYds:244.0, passR:10, rushYds:120.0, rushR:14, sacks:14, sacksR:4, toMargin:2, toR:5, thirdDown:45.0, thirdR:6,
+    // Las Vegas Raiders (3승 3패, PF:156, PA:132, Diff:+24)
+    lv: { wins:3, losses:3, ties:0, pct:'.500', divRank:'2위', streak:'3연패', pf:156, pa:132, diff:'+24', lastGame:{short:'vs LAC 20-24 패', isWin:false}, ppg:26.00, ppgR:7, papg:22.00, papgR:13, passYds:240.0, passR:10, rushYds:115.0, rushR:17, sacks:18, sacksR:8, toMargin:1, toR:12, thirdDown:44.0, thirdR:7,
       games: [
         { week:1, date:'9월 13일', homeAway:'HOME', oppId:'mia', oppName:'마이애미 돌핀스', myScore:27, oppScore:13, isWin:true, diff:'+14', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'AWAY', oppId:'lac', oppName:'로스앤젤레스 차저스', myScore:26, oppScore:14, isWin:true, diff:'+12', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'AWAY', oppId:'no', oppName:'뉴올리언스 세인츠', myScore:35, oppScore:27, isWin:true, diff:'+8', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'HOME', oppId:'kc', oppName:'캔자스시티 치프스', myScore:27, oppScore:30, isWin:false, diff:'-3', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'ne', oppName:'뉴잉글랜드 패트리어츠', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'ne', oppName:'뉴잉글랜드 패트리어츠', myScore:21, oppScore:24, isWin:false, diff:'-3', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'HOME', oppId:'lac', oppName:'로스앤젤레스 차저스', myScore:20, oppScore:24, isWin:false, diff:'-4', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'HOME', oppId:'lar', oppName:'로스앤젤레스 램스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // Denver Broncos (2승 2패, PF:74, PA:94, Diff:-20)
-    den: { wins:2, losses:2, ties:0, pct:'.500', divRank:'3위', streak:'1연패', pf:74, pa:94, diff:'-20', lastGame:{short:'@ SF 14-24 패', isWin:false}, ppg:18.5, ppgR:24, papg:23.5, papgR:17, passYds:196.0, passR:24, rushYds:97.0, rushR:24, sacks:16, sacksR:1, toMargin:0, toR:15, thirdDown:35.0, thirdR:24,
+    // Denver Broncos (2승 4패, PF:111, PA:146, Diff:-35)
+    den: { wins:2, losses:4, ties:0, pct:'.333', divRank:'3위', streak:'3연패', pf:111, pa:146, diff:'-35', lastGame:{short:'@ KC 17-28 패', isWin:false}, ppg:18.50, ppgR:25, papg:24.33, papgR:20, passYds:198.0, passR:25, rushYds:99.0, rushR:21, sacks:22, sacksR:1, toMargin:-1, toR:19, thirdDown:36.0, thirdR:23,
       games: [
         { week:1, date:'9월 14일', homeAway:'AWAY', oppId:'kc', oppName:'캔자스시티 치프스', myScore:10, oppScore:31, isWin:false, diff:'-21', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'HOME', oppId:'jax', oppName:'잭슨빌 재규어스', myScore:20, oppScore:13, isWin:true, diff:'+7', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'HOME', oppId:'lar', oppName:'로스앤젤레스 램스', myScore:30, oppScore:26, isWin:true, diff:'+4', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'AWAY', oppId:'sf', oppName:'샌프란시스코 49ers', myScore:14, oppScore:24, isWin:false, diff:'-10', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'lac', oppName:'로스앤젤레스 차저스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'sea', oppName:'시애틀 시호크스', myScore:20, oppScore:24, isWin:false, diff:'-4', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'AWAY', oppId:'kc', oppName:'캔자스시티 치프스', myScore:17, oppScore:28, isWin:false, diff:'-11', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'HOME', oppId:'nyg', oppName:'뉴욕 자이언츠', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // Los Angeles Chargers (0승 4패, PF:67, PA:106, Diff:-39)
-    lac: { wins:0, losses:4, ties:0, pct:'.000', divRank:'4위', streak:'4연패', pf:67, pa:106, diff:'-39', lastGame:{short:'@ SEA 23-30 패', isWin:false}, ppg:16.75, ppgR:27, papg:26.5, papgR:23, passYds:218.0, passR:18, rushYds:92.0, rushR:26, sacks:7, sacksR:26, toMargin:-4, toR:30, thirdDown:34.0, thirdR:26,
+    // Los Angeles Chargers (1승 5패, PF:108, PA:157, Diff:-49)
+    lac: { wins:1, losses:5, ties:0, pct:'.167', divRank:'4위', streak:'1연승', pf:108, pa:157, diff:'-49', lastGame:{short:'@ LV 24-20 승', isWin:true}, ppg:18.00, ppgR:26, papg:26.17, papgR:26, passYds:224.0, passR:17, rushYds:94.0, rushR:26, sacks:11, sacksR:26, toMargin:-3, toR:27, thirdDown:35.0, thirdR:26,
       games: [
         { week:1, date:'9월 13일', homeAway:'HOME', oppId:'ari', oppName:'애리조나 카디널스', myScore:14, oppScore:26, isWin:false, diff:'-12', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'HOME', oppId:'lv', oppName:'라스베이거스 레이더스', myScore:14, oppScore:26, isWin:false, diff:'-12', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'AWAY', oppId:'buf', oppName:'버펄로 빌스', myScore:16, oppScore:24, isWin:false, diff:'-8', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'AWAY', oppId:'sea', oppName:'시애틀 시호크스', myScore:23, oppScore:30, isWin:false, diff:'-7', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'den', oppName:'덴버 브롱코스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'kc', oppName:'캔자스시티 치프스', myScore:17, oppScore:31, isWin:false, diff:'-14', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'AWAY', oppId:'lv', oppName:'라스베이거스 레이더스', myScore:24, oppScore:20, isWin:true, diff:'+4', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'AWAY', oppId:'ten', oppName:'테네시 타이탄스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
 
-    // New York Giants (3승 1패, PF:82, PA:79, Diff:+3)
-    nyg: { wins:3, losses:1, ties:0, pct:'.750', divRank:'1위', streak:'2연승', pf:82, pa:79, diff:'+3', lastGame:{short:'vs ARI 36-24 승', isWin:true}, ppg:20.5, ppgR:18, papg:19.75, papgR:10, passYds:220.0, passR:17, rushYds:112.0, rushR:18, sacks:13, sacksR:6, toMargin:1, toR:11, thirdDown:39.5, thirdR:16,
-      games: [
-        { week:1, date:'9월 13일', homeAway:'HOME', oppId:'dal', oppName:'댈러스 카우보이스', myScore:28, oppScore:20, isWin:true, diff:'+8', status:'FINAL' },
-        { week:2, date:'9월 21일', homeAway:'AWAY', oppId:'lar', oppName:'로스앤젤레스 램스', myScore:6, oppScore:28, isWin:false, diff:'-22', status:'FINAL' },
-        { week:3, date:'9월 27일', homeAway:'HOME', oppId:'ten', oppName:'테네시 타이탄스', myScore:12, oppScore:7, isWin:true, diff:'+5', status:'FINAL' },
-        { week:4, date:'10월 4일', homeAway:'HOME', oppId:'ari', oppName:'애리조나 카디널스', myScore:36, oppScore:24, isWin:true, diff:'+12', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'wsh', oppName:'워싱턴 커맨더스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
-      ]
-    },
-    // Dallas Cowboys (2승 2패, PF:122, PA:112, Diff:+10)
-    dal: { wins:2, losses:2, ties:0, pct:'.500', divRank:'2위', streak:'1연승', pf:122, pa:112, diff:'+10', lastGame:{short:'@ HOU 34-30 승', isWin:true}, ppg:30.5, ppgR:2, papg:28.0, papgR:27, passYds:278.0, passR:2, rushYds:90.0, rushR:27, sacks:11, sacksR:10, toMargin:1, toR:10, thirdDown:46.5, thirdR:5,
+    // Dallas Cowboys (4승 2패, PF:183, PA:157, Diff:+26)
+    dal: { wins:4, losses:2, ties:0, pct:'.667', divRank:'1위', streak:'3연승', pf:183, pa:157, diff:'+26', lastGame:{short:'vs WSH 30-24 승', isWin:true}, ppg:30.50, ppgR:2, papg:26.17, papgR:28, passYds:275.0, passR:2, rushYds:93.0, rushR:27, sacks:16, sacksR:10, toMargin:2, toR:7, thirdDown:47.0, thirdR:4,
       games: [
         { week:1, date:'9월 13일', homeAway:'AWAY', oppId:'nyg', oppName:'뉴욕 자이언츠', myScore:20, oppScore:28, isWin:false, diff:'-8', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'HOME', oppId:'wsh', oppName:'워싱턴 커맨더스', myScore:37, oppScore:20, isWin:true, diff:'+17', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'AWAY', oppId:'bal', oppName:'볼티모어 레이븐스', myScore:31, oppScore:34, isWin:false, diff:'-3', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'AWAY', oppId:'hou', oppName:'휴스턴 텍선스', myScore:34, oppScore:30, isWin:true, diff:'+4', status:'FINAL' },
-        { week:5, date:'10월 8일', homeAway:'HOME', oppId:'tb', oppName:'탬파베이 버커니어스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 8일', homeAway:'HOME', oppId:'tb', oppName:'탬파베이 버커니어스', myScore:31, oppScore:21, isWin:true, diff:'+10', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'HOME', oppId:'wsh', oppName:'워싱턴 커맨더스', myScore:30, oppScore:24, isWin:true, diff:'+6', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'AWAY', oppId:'sf', oppName:'샌프란시스코 49ers', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // Philadelphia Eagles (2승 2패, PF:75, PA:93, Diff:-18)
-    phi: { wins:2, losses:2, ties:0, pct:'.500', divRank:'3위', streak:'2연패', pf:75, pa:93, diff:'-18', lastGame:{short:'vs LAR 20-24 패', isWin:false}, ppg:18.75, ppgR:23, papg:23.25, papgR:16, passYds:215.0, passR:20, rushYds:165.0, rushR:2, sacks:10, sacksR:13, toMargin:0, toR:15, thirdDown:42.5, thirdR:10,
+    // New York Giants (4승 2패, PF:127, PA:127, Diff:0)
+    nyg: { wins:4, losses:2, ties:0, pct:'.667', divRank:'2위', streak:'1연패', pf:127, pa:127, diff:'0', lastGame:{short:'@ PHI 21-28 패', isWin:false}, ppg:21.17, ppgR:16, papg:21.17, papgR:10, passYds:225.0, passR:16, rushYds:115.0, rushR:16, sacks:18, sacksR:7, toMargin:1, toR:10, thirdDown:40.0, thirdR:15,
+      games: [
+        { week:1, date:'9월 13일', homeAway:'HOME', oppId:'dal', oppName:'댈러스 카우보이스', myScore:28, oppScore:20, isWin:true, diff:'+8', status:'FINAL' },
+        { week:2, date:'9월 21일', homeAway:'AWAY', oppId:'lar', oppName:'로스앤젤레스 램스', myScore:6, oppScore:28, isWin:false, diff:'-22', status:'FINAL' },
+        { week:3, date:'9월 27일', homeAway:'HOME', oppId:'ten', oppName:'테네시 타이탄스', myScore:12, oppScore:7, isWin:true, diff:'+5', status:'FINAL' },
+        { week:4, date:'10월 4일', homeAway:'HOME', oppId:'ari', oppName:'애리조나 카디널스', myScore:36, oppScore:24, isWin:true, diff:'+12', status:'FINAL' },
+        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'wsh', oppName:'워싱턴 커맨더스', myScore:24, oppScore:20, isWin:true, diff:'+4', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'AWAY', oppId:'phi', oppName:'필라델피아 이글스', myScore:21, oppScore:28, isWin:false, diff:'-7', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'AWAY', oppId:'den', oppName:'덴버 브롱코스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+      ]
+    },
+    // Philadelphia Eagles (3승 3패, PF:124, PA:138, Diff:-14)
+    phi: { wins:3, losses:3, ties:0, pct:'.500', divRank:'3위', streak:'1연승', pf:124, pa:138, diff:-14, lastGame:{short:'vs NYG 28-21 승', isWin:true}, ppg:20.67, ppgR:19, papg:23.00, papgR:18, passYds:218.0, passR:19, rushYds:160.0, rushR:2, sacks:16, sacksR:11, toMargin:0, toR:16, thirdDown:43.0, thirdR:9,
       games: [
         { week:1, date:'9월 13일', homeAway:'HOME', oppId:'wsh', oppName:'워싱턴 커맨더스', myScore:24, oppScore:22, isWin:true, diff:'+2', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'AWAY', oppId:'ten', oppName:'테네시 타이탄스', myScore:24, oppScore:20, isWin:true, diff:'+4', status:'FINAL' },
         { week:3, date:'9월 28일', homeAway:'AWAY', oppId:'chi', oppName:'시카고 베어스', myScore:7, oppScore:27, isWin:false, diff:'-20', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'HOME', oppId:'lar', oppName:'로스앤젤레스 램스', myScore:20, oppScore:24, isWin:false, diff:'-4', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'jax', oppName:'잭슨빌 재규어스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'jax', oppName:'잭슨빌 재규어스', myScore:21, oppScore:24, isWin:false, diff:'-3', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'HOME', oppId:'nyg', oppName:'뉴욕 자이언츠', myScore:28, oppScore:21, isWin:true, diff:'+7', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'HOME', oppId:'car', oppName:'캐롤라이나 팬서스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // Washington Commanders (1승 3패, PF:88, PA:122, Diff:-34)
-    wsh: { wins:1, losses:3, ties:0, pct:'.250', divRank:'4위', streak:'1연패', pf:88, pa:122, diff:'-34', lastGame:{short:'vs IND 13-30 패', isWin:false}, ppg:22.0, ppgR:15, papg:30.5, papgR:30, passYds:234.0, passR:13, rushYds:130.0, rushR:9, sacks:7, sacksR:25, toMargin:-2, toR:26, thirdDown:40.5, thirdR:14,
+    // Washington Commanders (1승 5패, PF:132, PA:176, Diff:-44)
+    wsh: { wins:1, losses:5, ties:0, pct:'.167', divRank:'4위', streak:'3연패', pf:132, pa:176, diff:'-44', lastGame:{short:'@ DAL 24-30 패', isWin:false}, ppg:22.00, ppgR:16, papg:29.33, papgR:31, passYds:232.0, passR:12, rushYds:125.0, rushR:13, sacks:11, sacksR:27, toMargin:-3, toR:26, thirdDown:39.0, thirdR:18,
       games: [
         { week:1, date:'9월 13일', homeAway:'AWAY', oppId:'phi', oppName:'필라델피아 이글스', myScore:22, oppScore:24, isWin:false, diff:'-2', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'AWAY', oppId:'dal', oppName:'댈러스 카우보이스', myScore:20, oppScore:37, isWin:false, diff:'-17', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'HOME', oppId:'sea', oppName:'시애틀 시호크스', myScore:33, oppScore:31, isWin:true, diff:'+2', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'HOME', oppId:'ind', oppName:'인디애나폴리스 콜츠', myScore:13, oppScore:30, isWin:false, diff:'-17', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'nyg', oppName:'뉴욕 자이언츠', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'nyg', oppName:'뉴욕 자이언츠', myScore:20, oppScore:24, isWin:false, diff:'-4', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'AWAY', oppId:'dal', oppName:'댈러스 카우보이스', myScore:24, oppScore:30, isWin:false, diff:'-6', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'HOME', oppId:'det', oppName:'디트로이트 라이언스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
 
-    // Minnesota Vikings (4승 0패, PF:86, PA:51, Diff:+35)
-    min: { wins:4, losses:0, ties:0, pct:'1.000', divRank:'1위', streak:'4연승', pf:86, pa:51, diff:'+35', lastGame:{short:'vs MIA 15-10 승', isWin:true}, ppg:21.5, ppgR:17, papg:12.75, papgR:1, passYds:252.0, passR:6, rushYds:125.0, rushR:11, sacks:15, sacksR:2, toMargin:4, toR:1, thirdDown:47.5, thirdR:4,
+    // Minnesota Vikings (6승 0패, PF:137, PA:95, Diff:+42)
+    min: { wins:6, losses:0, ties:0, pct:'1.000', divRank:'1위', streak:'6연승', pf:137, pa:95, diff:'+42', lastGame:{short:'vs CHI 24-20 승', isWin:true}, ppg:22.83, ppgR:14, papg:15.83, papgR:3, passYds:250.0, passR:6, rushYds:124.0, rushR:11, sacks:21, sacksR:2, toMargin:5, toR:1, thirdDown:47.0, thirdR:3,
       games: [
         { week:1, date:'9월 13일', homeAway:'HOME', oppId:'gb', oppName:'그린베이 패커스', myScore:39, oppScore:22, isWin:true, diff:'+17', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'AWAY', oppId:'chi', oppName:'시카고 베어스', myScore:9, oppScore:3, isWin:true, diff:'+6', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'AWAY', oppId:'tb', oppName:'탬파베이 버커니어스', myScore:23, oppScore:16, isWin:true, diff:'+7', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'HOME', oppId:'mia', oppName:'마이애미 돌핀스', myScore:15, oppScore:10, isWin:true, diff:'+5', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'no', oppName:'뉴올리언스 세인츠', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'gb', oppName:'그린베이 패커스', myScore:27, oppScore:24, isWin:true, diff:'+3', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'HOME', oppId:'chi', oppName:'시카고 베어스', myScore:24, oppScore:20, isWin:true, diff:'+4', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'AWAY', oppId:'ari', oppName:'애리조나 카디널스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // Chicago Bears (3승 1패, PF:112, PA:65, Diff:+47)
-    chi: { wins:3, losses:1, ties:0, pct:'.750', divRank:'2위', streak:'2연승', pf:112, pa:65, diff:'+47', lastGame:{short:'vs NYJ 23-12 승', isWin:true}, ppg:28.0, ppgR:6, papg:16.25, papgR:4, passYds:242.0, passR:11, rushYds:136.0, rushR:7, sacks:12, sacksR:9, toMargin:2, toR:7, thirdDown:45.0, thirdR:6,
-      games: [
-        { week:1, date:'9월 13일', homeAway:'AWAY', oppId:'car', oppName:'캐롤라이나 팬서스', myScore:59, oppScore:37, isWin:true, diff:'+22', status:'FINAL' },
-        { week:2, date:'9월 20일', homeAway:'HOME', oppId:'min', oppName:'미네소타 바이킹스', myScore:3, oppScore:9, isWin:false, diff:'-6', status:'FINAL' },
-        { week:3, date:'9월 28일', homeAway:'HOME', oppId:'phi', oppName:'필라델피아 이글스', myScore:27, oppScore:7, isWin:true, diff:'+20', status:'FINAL' },
-        { week:4, date:'10월 4일', homeAway:'HOME', oppId:'nyj', oppName:'뉴욕 제츠', myScore:23, oppScore:12, isWin:true, diff:'+11', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'gb', oppName:'그린베이 패커스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
-      ]
-    },
-    // Detroit Lions (2승 2패, PF:119, PA:127, Diff:-8)
-    det: { wins:2, losses:2, ties:0, pct:'.500', divRank:'3위', streak:'1연패', pf:119, pa:127, diff:'-8', lastGame:{short:'@ CAR 26-32 패', isWin:false}, ppg:29.75, ppgR:3, papg:31.75, papgR:31, passYds:276.0, passR:3, rushYds:148.0, rushR:2, sacks:9, sacksR:18, toMargin:0, toR:14, thirdDown:46.0, thirdR:5,
+    // Detroit Lions (4승 2패, PF:184, PA:171, Diff:+13)
+    det: { wins:4, losses:2, ties:0, pct:'.667', divRank:'2위', streak:'2연승', pf:184, pa:171, diff:'+13', lastGame:{short:'vs GB 31-21 승', isWin:true}, ppg:30.67, ppgR:1, papg:28.50, papgR:29, passYds:274.0, passR:3, rushYds:146.0, rushR:3, sacks:14, sacksR:17, toMargin:1, toR:11, thirdDown:47.0, thirdR:5,
       games: [
         { week:1, date:'9월 13일', homeAway:'HOME', oppId:'no', oppName:'뉴올리언스 세인츠', myScore:31, oppScore:30, isWin:true, diff:'+1', status:'FINAL' },
         { week:2, date:'9월 18일', homeAway:'AWAY', oppId:'buf', oppName:'버펄로 빌스', myScore:31, oppScore:41, isWin:false, diff:'-10', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'HOME', oppId:'nyj', oppName:'뉴욕 제츠', myScore:31, oppScore:24, isWin:true, diff:'+7', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'AWAY', oppId:'car', oppName:'캐롤라이나 팬서스', myScore:26, oppScore:32, isWin:false, diff:'-6', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'ari', oppName:'애리조나 카디널스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'ari', oppName:'애리조나 카디널스', myScore:34, oppScore:23, isWin:true, diff:'+11', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'HOME', oppId:'gb', oppName:'그린베이 패커스', myScore:31, oppScore:21, isWin:true, diff:'+10', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'AWAY', oppId:'wsh', oppName:'워싱턴 커맨더스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // Green Bay Packers (2승 2패, PF:73, PA:105, Diff:-32)
-    gb: { wins:2, losses:2, ties:0, pct:'.500', divRank:'4위', streak:'1연승', pf:73, pa:105, diff:'-32', lastGame:{short:'@ TB 17-14 승', isWin:true}, ppg:18.25, ppgR:25, papg:26.25, papgR:22, passYds:220.0, passR:17, rushYds:120.0, rushR:13, sacks:9, sacksR:19, toMargin:-1, toR:21, thirdDown:41.0, thirdR:13,
+    // Chicago Bears (4승 2패, PF:155, PA:106, Diff:+49)
+    chi: { wins:4, losses:2, ties:0, pct:'.667', divRank:'3위', streak:'1연패', pf:155, pa:106, diff:'+49', lastGame:{short:'@ MIN 20-24 패', isWin:false}, ppg:25.83, ppgR:9, papg:17.67, papgR:4, passYds:238.0, passR:11, rushYds:135.0, rushR:8, sacks:17, sacksR:9, toMargin:2, toR:6, thirdDown:44.0, thirdR:7,
+      games: [
+        { week:1, date:'9월 13일', homeAway:'AWAY', oppId:'car', oppName:'캐롤라이나 팬서스', myScore:59, oppScore:37, isWin:true, diff:'+22', status:'FINAL' },
+        { week:2, date:'9월 20일', homeAway:'HOME', oppId:'min', oppName:'미네소타 바이킹스', myScore:3, oppScore:9, isWin:false, diff:'-6', status:'FINAL' },
+        { week:3, date:'9월 28일', homeAway:'HOME', oppId:'phi', oppName:'필라델피아 이글스', myScore:27, oppScore:7, isWin:true, diff:'+20', status:'FINAL' },
+        { week:4, date:'10월 4일', homeAway:'HOME', oppId:'nyj', oppName:'뉴욕 제츠', myScore:23, oppScore:12, isWin:true, diff:'+11', status:'FINAL' },
+        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'nyj', oppName:'뉴욕 제츠', myScore:23, oppScore:17, isWin:true, diff:'+6', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'AWAY', oppId:'min', oppName:'미네소타 바이킹스', myScore:20, oppScore:24, isWin:false, diff:'-4', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'HOME', oppId:'no', oppName:'뉴올리언스 세인츠', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+      ]
+    },
+    // Green Bay Packers (2승 4패, PF:118, PA:163, Diff:-45)
+    gb: { wins:2, losses:4, ties:0, pct:'.333', divRank:'4위', streak:'2연패', pf:118, pa:163, diff:'-45', lastGame:{short:'@ DET 21-31 패', isWin:false}, ppg:19.67, ppgR:22, papg:27.17, papgR:28, passYds:222.0, passR:18, rushYds:118.0, rushR:15, sacks:14, sacksR:18, toMargin:-2, toR:24, thirdDown:40.0, thirdR:16,
       games: [
         { week:1, date:'9월 13일', homeAway:'AWAY', oppId:'min', oppName:'미네소타 바이킹스', myScore:22, oppScore:39, isWin:false, diff:'-17', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'AWAY', oppId:'nyj', oppName:'뉴욕 제츠', myScore:20, oppScore:17, isWin:true, diff:'+3', status:'FINAL' },
         { week:3, date:'9월 24일', homeAway:'HOME', oppId:'atl', oppName:'애틀랜타 팰컨스', myScore:14, oppScore:35, isWin:false, diff:'-21', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'AWAY', oppId:'tb', oppName:'탬파베이 버커니어스', myScore:17, oppScore:14, isWin:true, diff:'+3', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'chi', oppName:'시카고 베어스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'min', oppName:'미네소타 바이킹스', myScore:24, oppScore:27, isWin:false, diff:'-3', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'AWAY', oppId:'det', oppName:'디트로이트 라이언스', myScore:21, oppScore:31, isWin:false, diff:'-10', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'HOME', oppId:'sea', oppName:'시애틀 시호크스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
 
-    // Carolina Panthers (2승 2패, PF:121, PA:109, Diff:+12)
-    car: { wins:2, losses:2, ties:0, pct:'.500', divRank:'1위', streak:'1연승', pf:121, pa:109, diff:'+12', lastGame:{short:'vs DET 32-26 승', isWin:true}, ppg:30.25, ppgR:2, papg:27.25, papgR:26, passYds:268.0, passR:4, rushYds:122.0, rushR:12, sacks:9, sacksR:17, toMargin:1, toR:8, thirdDown:43.5, thirdR:8,
+    // Carolina Panthers (3승 3패, PF:165, PA:154, Diff:+11)
+    car: { wins:3, losses:3, ties:0, pct:'.500', divRank:'1위', streak:'1연패', pf:165, pa:154, diff:'+11', lastGame:{short:'@ NO 20-24 패', isWin:false}, ppg:27.50, ppgR:4, papg:25.67, papgR:25, passYds:265.0, passR:4, rushYds:120.0, rushR:14, sacks:13, sacksR:20, toMargin:1, toR:9, thirdDown:43.0, thirdR:9,
       games: [
         { week:1, date:'9월 13일', homeAway:'HOME', oppId:'chi', oppName:'시카고 베어스', myScore:37, oppScore:59, isWin:false, diff:'-22', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'AWAY', oppId:'atl', oppName:'애틀랜타 팰컨스', myScore:34, oppScore:3, isWin:true, diff:'+31', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'AWAY', oppId:'cle', oppName:'클리블랜드 브라운스', myScore:18, oppScore:21, isWin:false, diff:'-3', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'HOME', oppId:'det', oppName:'디트로이트 라이언스', myScore:32, oppScore:26, isWin:true, diff:'+6', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'cle', oppName:'클리블랜드 브라운스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'cle', oppName:'클리블랜드 브라운스', myScore:24, oppScore:21, isWin:true, diff:'+3', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'AWAY', oppId:'no', oppName:'뉴올리언스 세인츠', myScore:20, oppScore:24, isWin:false, diff:'-4', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'AWAY', oppId:'phi', oppName:'필라델피아 이글스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // Atlanta Falcons (2승 2패, PF:96, PA:92, Diff:+4)
-    atl: { wins:2, losses:2, ties:0, pct:'.500', divRank:'2위', streak:'2연승', pf:96, pa:92, diff:'+4', lastGame:{short:'@ NO 45-24 승', isWin:true}, ppg:24.0, ppgR:13, papg:23.0, papgR:15, passYds:232.0, passR:14, rushYds:138.0, rushR:6, sacks:8, sacksR:21, toMargin:0, toR:17, thirdDown:41.5, thirdR:11,
+    // Atlanta Falcons (3승 3패, PF:147, PA:147, Diff:0)
+    atl: { wins:3, losses:3, ties:0, pct:'.500', divRank:'2위', streak:'1연승', pf:147, pa:147, diff:'0', lastGame:{short:'vs TB 27-24 승', isWin:true}, ppg:24.50, ppgR:11, papg:24.50, papgR:21, passYds:235.0, passR:12, rushYds:136.0, rushR:7, sacks:12, sacksR:22, toMargin:0, toR:16, thirdDown:41.0, thirdR:14,
       games: [
         { week:1, date:'9월 13일', homeAway:'AWAY', oppId:'pit', oppName:'피츠버그 스틸러스', myScore:13, oppScore:20, isWin:false, diff:'-7', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'HOME', oppId:'car', oppName:'캐롤라이나 팬서스', myScore:3, oppScore:34, isWin:false, diff:'-31', status:'FINAL' },
         { week:3, date:'9월 24일', homeAway:'AWAY', oppId:'gb', oppName:'그린베이 패커스', myScore:35, oppScore:14, isWin:true, diff:'+21', status:'FINAL' },
         { week:4, date:'10월 5일', homeAway:'AWAY', oppId:'no', oppName:'뉴올리언스 세인츠', myScore:45, oppScore:24, isWin:true, diff:'+21', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'bal', oppName:'볼티모어 레이븐스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'bal', oppName:'볼티모어 레이븐스', myScore:24, oppScore:31, isWin:false, diff:'-7', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'HOME', oppId:'tb', oppName:'탬파베이 버커니어스', myScore:27, oppScore:24, isWin:true, diff:'+3', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'HOME', oppId:'lar', oppName:'로스앤젤레스 램스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // New Orleans Saints (1승 3패, PF:105, PA:128, Diff:-23)
-    no: { wins:1, losses:3, ties:0, pct:'.250', divRank:'3위', streak:'2연패', pf:105, pa:128, diff:'-23', lastGame:{short:'vs ATL 24-45 패', isWin:false}, ppg:26.25, ppgR:7, papg:32.0, papgR:32, passYds:258.0, passR:5, rushYds:115.0, rushR:16, sacks:10, sacksR:12, toMargin:-2, toR:25, thirdDown:42.0, thirdR:12,
+    // New Orleans Saints (2승 4패, PF:149, PA:178, Diff:-29)
+    no: { wins:2, losses:4, ties:0, pct:'.333', divRank:'3위', streak:'1연승', pf:149, pa:178, diff:'-29', lastGame:{short:'vs CAR 24-20 승', isWin:true}, ppg:24.83, ppgR:10, papg:29.67, papgR:32, passYds:255.0, passR:5, rushYds:112.0, rushR:18, sacks:14, sacksR:16, toMargin:-2, toR:25, thirdDown:41.0, thirdR:13,
       games: [
         { week:1, date:'9월 13일', homeAway:'AWAY', oppId:'det', oppName:'디트로이트 라이언스', myScore:30, oppScore:31, isWin:false, diff:'-1', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'AWAY', oppId:'bal', oppName:'볼티모어 레이븐스', myScore:24, oppScore:17, isWin:true, diff:'+7', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'HOME', oppId:'lv', oppName:'라스베이거스 레이더스', myScore:27, oppScore:35, isWin:false, diff:'-8', status:'FINAL' },
         { week:4, date:'10월 5일', homeAway:'HOME', oppId:'atl', oppName:'애틀랜타 팰컨스', myScore:24, oppScore:45, isWin:false, diff:'-21', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'min', oppName:'미네소타 바이킹스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'sf', oppName:'샌프란시스코 49ers', myScore:20, oppScore:30, isWin:false, diff:'-10', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'HOME', oppId:'car', oppName:'캐롤라이나 팬서스', myScore:24, oppScore:20, isWin:true, diff:'+4', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'AWAY', oppId:'chi', oppName:'시카고 베어스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // Tampa Bay Buccaneers (0승 4패, PF:76, PA:96, Diff:-20)
-    tb: { wins:0, losses:4, ties:0, pct:'.000', divRank:'4위', streak:'4연패', pf:76, pa:96, diff:'-20', lastGame:{short:'vs GB 14-17 패', isWin:false}, ppg:19.0, ppgR:21, papg:24.0, papgR:20, passYds:244.0, passR:10, rushYds:82.0, rushR:30, sacks:8, sacksR:23, toMargin:-3, toR:28, thirdDown:37.0, thirdR:20,
+    // Tampa Bay Buccaneers (0승 6패, PF:121, PA:154, Diff:-33)
+    tb: { wins:0, losses:6, ties:0, pct:'.000', divRank:'4위', streak:'6연패', pf:121, pa:154, diff:'-33', lastGame:{short:'@ ATL 24-27 패', isWin:false}, ppg:20.17, ppgR:20, papg:25.67, papgR:25, passYds:240.0, passR:9, rushYds:85.0, rushR:30, sacks:12, sacksR:24, toMargin:-4, toR:29, thirdDown:36.5, thirdR:22,
       games: [
         { week:1, date:'9월 13일', homeAway:'AWAY', oppId:'cin', oppName:'신시내티 벵골스', myScore:27, oppScore:33, isWin:false, diff:'-6', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'HOME', oppId:'cle', oppName:'클리블랜드 브라운스', myScore:19, oppScore:23, isWin:false, diff:'-4', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'HOME', oppId:'min', oppName:'미네소타 바이킹스', myScore:16, oppScore:23, isWin:false, diff:'-7', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'HOME', oppId:'gb', oppName:'그린베이 패커스', myScore:14, oppScore:17, isWin:false, diff:'-3', status:'FINAL' },
-        { week:5, date:'10월 8일', homeAway:'AWAY', oppId:'dal', oppName:'댈러스 카우보이스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 8일', homeAway:'AWAY', oppId:'dal', oppName:'댈러스 카우보이스', myScore:21, oppScore:31, isWin:false, diff:'-10', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'AWAY', oppId:'atl', oppName:'애틀랜타 팰컨스', myScore:24, oppScore:27, isWin:false, diff:'-3', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'HOME', oppId:'sea', oppName:'시애틀 시호크스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
 
-    // San Francisco 49ers (4승 0패, PF:122, PA:64, Diff:+58)
-    sf: { wins:4, losses:0, ties:0, pct:'1.000', divRank:'1위', streak:'4연승', pf:122, pa:64, diff:'+58', lastGame:{short:'vs DEN 24-14 승', isWin:true}, ppg:30.5, ppgR:1, papg:16.0, papgR:2, passYds:260.0, passR:5, rushYds:170.0, rushR:1, sacks:14, sacksR:5, toMargin:4, toR:1, thirdDown:49.0, thirdR:2,
+    // San Francisco 49ers (6승 0패, PF:180, PA:105, Diff:+75)
+    sf: { wins:6, losses:0, ties:0, pct:'1.000', divRank:'1위', streak:'6연승', pf:180, pa:105, diff:'+75', lastGame:{short:'vs LAR 28-21 승', isWin:true}, ppg:30.00, ppgR:2, papg:17.50, papgR:3, passYds:262.0, passR:5, rushYds:168.0, rushR:1, sacks:20, sacksR:4, toMargin:5, toR:1, thirdDown:48.5, thirdR:2,
       games: [
         { week:1, date:'9월 13일', homeAway:'HOME', oppId:'lar', oppName:'로스앤젤레스 램스', myScore:27, oppScore:7, isWin:true, diff:'+20', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'HOME', oppId:'mia', oppName:'마이애미 돌핀스', myScore:35, oppScore:13, isWin:true, diff:'+22', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'HOME', oppId:'ari', oppName:'애리조나 카디널스', myScore:36, oppScore:30, isWin:true, diff:'+6', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'HOME', oppId:'den', oppName:'덴버 브롱코스', myScore:24, oppScore:14, isWin:true, diff:'+10', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'sea', oppName:'시애틀 시호크스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'AWAY', oppId:'no', oppName:'뉴올리언스 세인츠', myScore:30, oppScore:20, isWin:true, diff:'+10', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'HOME', oppId:'lar', oppName:'로스앤젤레스 램스', myScore:28, oppScore:21, isWin:true, diff:'+7', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'HOME', oppId:'dal', oppName:'댈러스 카우보이스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // Seattle Seahawks (3승 1패, PF:105, PA:73, Diff:+32)
-    sea: { wins:3, losses:1, ties:0, pct:'.750', divRank:'2위', streak:'1연승', pf:105, pa:73, diff:'+32', lastGame:{short:'vs LAC 30-23 승', isWin:true}, ppg:26.25, ppgR:9, papg:18.25, papgR:7, passYds:230.0, passR:15, rushYds:142.0, rushR:5, sacks:13, sacksR:7, toMargin:2, toR:6, thirdDown:46.0, thirdR:5,
+    // Seattle Seahawks (5승 1패, PF:160, PA:110, Diff:+50)
+    sea: { wins:5, losses:1, ties:0, pct:'.833', divRank:'2위', streak:'3연승', pf:160, pa:110, diff:'+50', lastGame:{short:'vs ARI 31-17 승', isWin:true}, ppg:26.67, ppgR:6, papg:18.33, papgR:4, passYds:234.0, passR:12, rushYds:140.0, rushR:6, sacks:18, sacksR:6, toMargin:3, toR:5, thirdDown:46.0, thirdR:5,
       games: [
         { week:1, date:'9월 13일', homeAway:'HOME', oppId:'ne', oppName:'뉴잉글랜드 패트리어츠', myScore:13, oppScore:10, isWin:true, diff:'+3', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'AWAY', oppId:'ari', oppName:'애리조나 카디널스', myScore:31, oppScore:7, isWin:true, diff:'+24', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'AWAY', oppId:'wsh', oppName:'워싱턴 커맨더스', myScore:31, oppScore:33, isWin:false, diff:'-2', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'HOME', oppId:'lac', oppName:'로스앤젤레스 차저스', myScore:30, oppScore:23, isWin:true, diff:'+7', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'sf', oppName:'샌프란시스코 49ers', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'den', oppName:'덴버 브롱코스', myScore:24, oppScore:20, isWin:true, diff:'+4', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'HOME', oppId:'ari', oppName:'애리조나 카디널스', myScore:31, oppScore:17, isWin:true, diff:'+14', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'AWAY', oppId:'gb', oppName:'그린베이 패커스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // Los Angeles Rams (2승 2패, PF:85, PA:83, Diff:+2)
-    lar: { wins:2, losses:2, ties:0, pct:'.500', divRank:'3위', streak:'1연승', pf:85, pa:83, diff:'+2', lastGame:{short:'@ PHI 24-20 승', isWin:true}, ppg:21.25, ppgR:16, papg:20.75, papgR:10, passYds:240.0, passR:12, rushYds:105.0, rushR:20, sacks:11, sacksR:11, toMargin:1, toR:13, thirdDown:41.0, thirdR:14,
+    // Los Angeles Rams (2승 4패, PF:133, PA:145, Diff:-12)
+    lar: { wins:2, losses:4, ties:0, pct:'.333', divRank:'3위', streak:'2연패', pf:133, pa:145, diff:'-12', lastGame:{short:'@ SF 21-28 패', isWin:false}, ppg:22.17, ppgR:16, papg:24.17, papgR:19, passYds:242.0, passR:8, rushYds:106.0, rushR:19, sacks:15, sacksR:14, toMargin:0, toR:15, thirdDown:41.5, thirdR:12,
       games: [
         { week:1, date:'9월 13일', homeAway:'AWAY', oppId:'sf', oppName:'샌프란시스코 49ers', myScore:7, oppScore:27, isWin:false, diff:'-20', status:'FINAL' },
         { week:2, date:'9월 21일', homeAway:'HOME', oppId:'nyg', oppName:'뉴욕 자이언츠', myScore:28, oppScore:6, isWin:true, diff:'+22', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'AWAY', oppId:'den', oppName:'덴버 브롱코스', myScore:26, oppScore:30, isWin:false, diff:'-4', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'AWAY', oppId:'phi', oppName:'필라델피아 이글스', myScore:24, oppScore:20, isWin:true, diff:'+4', status:'FINAL' },
-        { week:5, date:'10월 12일', homeAway:'HOME', oppId:'buf', oppName:'버펄로 빌스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 12일', homeAway:'HOME', oppId:'buf', oppName:'버펄로 빌스', myScore:27, oppScore:34, isWin:false, diff:'-7', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'AWAY', oppId:'sf', oppName:'샌프란시스코 49ers', myScore:21, oppScore:28, isWin:false, diff:'-7', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'AWAY', oppId:'lv', oppName:'라스베이거스 레이더스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     },
-    // Arizona Cardinals (1승 3패, PF:87, PA:117, Diff:-30)
-    ari: { wins:1, losses:3, ties:0, pct:'.250', divRank:'4위', streak:'3연패', pf:87, pa:117, diff:'-30', lastGame:{short:'@ NYG 24-36 패', isWin:false}, ppg:21.75, ppgR:14, papg:29.25, papgR:29, passYds:224.0, passR:16, rushYds:116.0, rushR:15, sacks:9, sacksR:19, toMargin:-2, toR:27, thirdDown:38.0, thirdR:18,
+    // Arizona Cardinals (1승 5패, PF:127, PA:182, Diff:-55)
+    ari: { wins:1, losses:5, ties:0, pct:'.167', divRank:'4위', streak:'5연패', pf:127, pa:182, diff:'-55', lastGame:{short:'@ SEA 17-31 패', isWin:false}, ppg:21.17, ppgR:17, papg:30.33, papgR:32, passYds:226.0, passR:15, rushYds:114.0, rushR:17, sacks:13, sacksR:21, toMargin:-3, toR:27, thirdDown:37.0, thirdR:21,
       games: [
         { week:1, date:'9월 13일', homeAway:'AWAY', oppId:'lac', oppName:'로스앤젤레스 차저스', myScore:26, oppScore:14, isWin:true, diff:'+12', status:'FINAL' },
         { week:2, date:'9월 20일', homeAway:'HOME', oppId:'sea', oppName:'시애틀 시호크스', myScore:7, oppScore:31, isWin:false, diff:'-24', status:'FINAL' },
         { week:3, date:'9월 27일', homeAway:'AWAY', oppId:'sf', oppName:'샌프란시스코 49ers', myScore:30, oppScore:36, isWin:false, diff:'-6', status:'FINAL' },
         { week:4, date:'10월 4일', homeAway:'AWAY', oppId:'nyg', oppName:'뉴욕 자이언츠', myScore:24, oppScore:36, isWin:false, diff:'-12', status:'FINAL' },
-        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'det', oppName:'디트로이트 라이언스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
+        { week:5, date:'10월 11일', homeAway:'HOME', oppId:'det', oppName:'디트로이트 라이언스', myScore:23, oppScore:34, isWin:false, diff:'-11', status:'FINAL' },
+        { week:6, date:'10월 18일', homeAway:'AWAY', oppId:'sea', oppName:'시애틀 시호크스', myScore:17, oppScore:31, isWin:false, diff:'-14', status:'FINAL' },
+        { week:7, date:'10월 25일', homeAway:'HOME', oppId:'min', oppName:'미네소타 바이킹스', myScore:null, oppScore:null, isWin:null, diff:'-', status:'UPCOMING' }
       ]
     }
   };
@@ -642,8 +644,8 @@
   };
 
   let currentConference = 'ALL', currentDivision = 'ALL', searchQuery = '', onlyFavorites = false;
-  let currentViewMode = 'grid', currentPositionFilter = 'QB', currentScoreWeek = 4;
-  let selectedMatchupA = 'pit', selectedMatchupB = 'cle', currentSelectedTeam = null;
+  let currentViewMode = 'grid', currentPositionFilter = 'QB', currentScoreWeek = 6;
+  let selectedMatchupA = 'pit', selectedMatchupB = 'bal', currentSelectedTeam = null;
   let mapInstance = null, mapMarkers = [];
 
   function getFavorites() { try { return JSON.parse(localStorage.getItem('nfl_favorites')||'[]'); } catch(e){ return []; } }
@@ -767,7 +769,7 @@
       const r = getTeamRecord(t.id);
       const gmap = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(t.stadium+', '+t.cityEn)}`;
       
-      // 1~4주차 실측 매치 결과 뱃지 (2열 그리드로 4경기 완벽 표시)
+      // 1~6주차 실측 매치 결과 뱃지 (2열 또는 3열 그리드로 컴팩트 표시)
       const gamesList = (r.games || []).filter(g => g.status === 'FINAL');
       const gameBadgesHtml = gamesList.map(g => {
         const oppTeam = NFL_TEAMS.find(x => x.id === g.oppId);
@@ -796,12 +798,12 @@
           <!-- 시즌 전적 요약 -->
           <div class="mb-2.5 p-2 bg-slate-950 rounded-xl border border-slate-800 flex justify-between items-center gap-2">
             <div class="flex items-center gap-1.5"><span class="text-xs font-black px-2 py-0.5 rounded bg-blue-900/60 text-blue-200 border border-blue-700/50">${r.wins}승 ${r.losses}패</span><span class="text-[11px] font-bold text-amber-400">${r.divRank}</span></div>
-            <div class="text-[10px] font-bold text-slate-400">${r.pf}득 / ${r.pa}실 (<span class="${String(r.diff).includes('+')?'text-emerald-400':'text-rose-400'}">${r.diff}</span>)</div>
+            <div class="text-[10px] font-bold text-slate-400">${r.pf}득 / ${r.pa}실 (<span class="${String(r.diff).includes('+')?'text-emerald-400':(String(r.diff)==='0'?'text-slate-300':'text-rose-400')}">${r.diff}</span>)</div>
           </div>
 
-          <!-- 검증된 1~4주차 경기 결과 뱃지 -->
+          <!-- 검증된 1~6주차 경기 결과 뱃지 -->
           <div class="mb-3 bg-slate-950/80 p-2 rounded-xl border border-slate-800/80">
-            <div class="text-[10px] font-bold text-slate-400 mb-1.5 flex justify-between"><span>시즌 1~4주차 실측 스코어 (전 경기 검증)</span><span class="text-emerald-400 text-[9px]">클릭 시 전 경기 열람</span></div>
+            <div class="text-[10px] font-bold text-slate-400 mb-1.5 flex justify-between"><span>시즌 1~6주차 실측 스코어 (전 경기 검증)</span><span class="text-emerald-400 text-[9px]">클릭 시 전 경기 열람</span></div>
             <div class="grid grid-cols-2 gap-1.5">
               ${gameBadgesHtml}
             </div>
@@ -818,7 +820,7 @@
 
   function setWeeklyScoreTab(w) {
     currentScoreWeek = w;
-    [1, 2, 3, 4, 5].forEach(wk => {
+    [1, 2, 3, 4, 5, 6, 7].forEach(wk => {
       const btn = document.getElementById('weekTab' + wk);
       if(btn) {
         btn.className = wk === w 
