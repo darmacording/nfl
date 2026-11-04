@@ -129,7 +129,7 @@
       <div class="bg-gradient-to-r from-slate-900 via-blue-950/40 to-slate-900 p-4 rounded-2xl border border-slate-800 flex flex-col md:flex-row items-start justify-between gap-4">
         <div>
           <h2 class="text-lg font-black text-white flex items-center gap-2"><i class="fa-solid fa-ranking-star text-amber-400"></i> NFL 정규시즌 공식 디비전 순위표 (8주차 종료 기준)</h2>
-          <p class="text-xs text-slate-400 mt-1">실측 전적(승·패·무), 득점, 실점, 득실차 및 8주차 라이벌전 스코어가 반영된 순위표입니다.</p>
+          <p class="text-xs text-slate-400 mt-1">디비전 순위(1~4위) 옆에 <span class="text-amber-300 font-bold">지구 1위 시드(1~4)</span> 및 <span class="text-emerald-300 font-bold">와일드카드권(5~7)</span> 콘퍼런스 공식 순위가 함께 표시됩니다.</p>
         </div>
       </div>
       <div id="standingsDivisionGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-5"></div>
@@ -1100,19 +1100,43 @@
 
   function recalculateDivisionRankings() {
     const divs = [{c:'AFC', d:'East'}, {c:'AFC', d:'North'}, {c:'AFC', d:'South'}, {c:'AFC', d:'West'}, {c:'NFC', d:'East'}, {c:'NFC', d:'North'}, {c:'NFC', d:'South'}, {c:'NFC', d:'West'}];
+    
+    const teamSortFn = (a, b) => {
+      const rA = getTeamRecord(a.id), rB = getTeamRecord(b.id);
+      const totalA = (rA.wins + rA.losses + (rA.ties || 0)) || 1;
+      const totalB = (rB.wins + rB.losses + (rB.ties || 0)) || 1;
+      const pctA = (rA.wins + 0.5 * (rA.ties || 0)) / totalA;
+      const pctB = (rB.wins + 0.5 * (rB.ties || 0)) / totalB;
+      if (Math.abs(pctB - pctA) > 0.0001) return pctB - pctA;
+      if (rB.wins !== rA.wins) return rB.wins - rA.wins;
+      return parseInt(rB.diff || '0', 10) - parseInt(rA.diff || '0', 10);
+    };
+
+    // 1. 디비전 순위 산출 (1위 ~ 4위)
     divs.forEach(div => {
       const teams = NFL_TEAMS.filter(t => t.conf === div.c && t.div === div.d);
-      teams.sort((a,b) => {
-        const rA = getTeamRecord(a.id), rB = getTeamRecord(b.id);
-        const totalA = (rA.wins + rA.losses + (rA.ties || 0)) || 1;
-        const totalB = (rB.wins + rB.losses + (rB.ties || 0)) || 1;
-        const pctA = (rA.wins + 0.5 * (rA.ties || 0)) / totalA;
-        const pctB = (rB.wins + 0.5 * (rB.ties || 0)) / totalB;
-        if(Math.abs(pctB - pctA) > 0.001) return pctB - pctA;
-        if(rB.wins !== rA.wins) return rB.wins - rA.wins;
-        return parseInt(rB.diff||'0', 10) - parseInt(rA.diff||'0', 10);
+      teams.sort(teamSortFn);
+      teams.forEach((t, i) => { 
+        if(NFL_RECORDS_DATA[t.id]) {
+          NFL_RECORDS_DATA[t.id].divRank = `${i+1}위`; 
+          NFL_RECORDS_DATA[t.id].divRankNum = i + 1;
+        }
       });
-      teams.forEach((t, i) => { if(NFL_RECORDS_DATA[t.id]) NFL_RECORDS_DATA[t.id].divRank = `${i+1}위`; });
+    });
+
+    // 2. 콘퍼런스 공식 순위 산출 (NFL 공식 시드: 4개 지구 1위팀 1~4번 시드, 나머지 12개팀 5~16번 시드)
+    ['AFC', 'NFC'].forEach(c => {
+      const confTeams = NFL_TEAMS.filter(t => t.conf === c);
+      const divLeaders = confTeams.filter(t => (NFL_RECORDS_DATA[t.id]?.divRankNum || 4) === 1).sort(teamSortFn);
+      const wildcards = confTeams.filter(t => (NFL_RECORDS_DATA[t.id]?.divRankNum || 4) > 1).sort(teamSortFn);
+      const confRanked = [...divLeaders, ...wildcards];
+
+      confRanked.forEach((t, idx) => {
+        if(NFL_RECORDS_DATA[t.id]) {
+          NFL_RECORDS_DATA[t.id].confRank = `${idx + 1}위`;
+          NFL_RECORDS_DATA[t.id].confRankNum = idx + 1;
+        }
+      });
     });
   }
 
@@ -1237,7 +1261,7 @@
           
           <!-- 시즌 전적 요약 -->
           <div class="mb-2.5 p-2 bg-slate-950 rounded-xl border border-slate-800 flex justify-between items-center gap-2">
-            <div class="flex items-center gap-1.5"><span class="text-xs font-black px-2 py-0.5 rounded bg-blue-900/60 text-blue-200 border border-blue-700/50">${r.wins}승 ${r.losses}패</span><span class="text-[11px] font-bold text-amber-400">${r.divRank}</span></div>
+            <div class="flex items-center gap-1.5"><span class="text-xs font-black px-2 py-0.5 rounded bg-blue-900/60 text-blue-200 border border-blue-700/50">${r.wins}승 ${r.losses}패</span><span class="text-[11px] font-bold text-amber-400">${r.divRank}</span><span class="text-[10px] font-bold text-sky-400">(${t.conf} ${r.confRank||''})</span></div>
             <div class="text-[10px] font-bold text-slate-400">${r.pf}득 / ${r.pa}실 (<span class="${String(r.diff).includes('+')?'text-emerald-400':(String(r.diff)==='0'?'text-slate-300':'text-rose-400')}">${r.diff}</span>)</div>
           </div>
 
@@ -1360,12 +1384,12 @@
         <div class="bg-slate-900/90 rounded-2xl border border-slate-800 p-4 shadow-lg">
           <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-2">
             <h3 class="text-sm font-black text-white flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full ${g.c==='AFC'?'bg-red-500':'bg-blue-500'}"></span> ${g.n}</h3>
-            <span class="text-[10px] text-slate-400">2026 시즌 (8주차 종료 기준)</span>
+            <span class="text-[10px] text-slate-400">지구 순위 · 콘퍼런스 시드(1~16) 동시 표기</span>
           </div>
           <table class="w-full text-left text-xs">
             <thead>
               <tr class="text-[10px] text-slate-400 border-b border-slate-800/50">
-                <th class="py-1">순위/팀</th>
+                <th class="py-1">지구 / CONF / 팀</th>
                 <th class="text-center">승-패-무</th>
                 <th class="text-center">승률</th>
                 <th class="text-center">득-실</th>
@@ -1376,8 +1400,18 @@
             <tbody>
               ${teams.map(t => {
                 const r = getTeamRecord(t.id);
+                const confBadgeClass = r.confRankNum <= 4 
+                  ? 'bg-amber-950/80 text-amber-300 border border-amber-700/60' 
+                  : (r.confRankNum <= 7 
+                      ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-800/60' 
+                      : 'bg-slate-800 text-slate-400 border border-slate-700');
                 return `<tr class="border-b border-slate-800/30 hover:bg-slate-800/50 cursor-pointer transition" onclick="openTeamModal('${t.id}')">
-                  <td class="py-2.5 flex items-center gap-2"><span class="font-mono text-amber-400 font-bold w-4">${r.divRank.replace('위','')}</span><img src="${getTeamLogoUrl(t.id)}" class="w-5 h-5 object-contain"><span class="font-bold text-white">${t.nameKo}</span></td>
+                  <td class="py-2.5 flex items-center gap-2">
+                    <span class="font-mono text-amber-400 font-black text-xs w-3.5 text-center">${r.divRank.replace('위','')}</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded font-mono font-bold ${confBadgeClass} shrink-0" title="${t.conf} 콘퍼런스 순위">${t.conf} ${r.confRank}</span>
+                    <img src="${getTeamLogoUrl(t.id)}" class="w-5 h-5 object-contain shrink-0">
+                    <span class="font-bold text-white truncate">${t.nameKo}</span>
+                  </td>
                   <td class="text-center font-mono font-bold text-slate-200">${r.wins}-${r.losses}-${r.ties}</td>
                   <td class="text-center font-mono text-white font-black">${r.pct}</td>
                   <td class="text-center font-mono text-[11px] text-slate-400">${r.pf}-${r.pa}</td>
@@ -1519,7 +1553,7 @@
     document.getElementById('modalHeaderBanner').style.background = `linear-gradient(135deg, ${t.colors.primary} 0%, #0e1626 100%)`;
     
     document.getElementById('modalRecordWLT').textContent = `${r.wins}승 ${r.losses}패`; document.getElementById('modalRecordPct').textContent = r.pct;
-    document.getElementById('modalRecordRank').textContent = r.divRank; document.getElementById('modalRecordStreak').textContent = r.streak;
+    document.getElementById('modalRecordRank').textContent = `${r.divRank} (${t.conf} ${r.confRank})`; document.getElementById('modalRecordStreak').textContent = r.streak;
     document.getElementById('modalRecordPoints').textContent = `${r.pf} / ${r.pa}`; document.getElementById('modalRecordDiff').textContent = r.diff;
     document.getElementById('modalLastGameResult').textContent = r.lastGame.short;
 
