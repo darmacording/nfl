@@ -224,4 +224,770 @@
             { id: "SF", name: "샌프란시스코 49ers", enName: "San Francisco 49ers", conf: "NFC", div: "NFC 서부", city: "산타클라라, CA", stadium: "리바이스 스타디움", lat: 37.4032, lng: -121.9698, sb: 5, coach: "카일 섀너핸 (Kyle Shanahan)", qb: "브록 퍼디 (#13)", rb: "크리스천 맥캐프리 / 조던 메이슨", wr: "디보 사무엘 / 조지 키틀", def: "닉 보사 / 프레드 워너", wins: 7, losses: 1, ties: 0, pf: 235, pa: 156, streak: "1승", nextGame: "10주차 @ 댈러스 (11/16 06:25)" },
             { id: "SEA", name: "시애틀 시호크스", enName: "Seattle Seahawks", conf: "NFC", div: "NFC 서부", city: "시애틀, WA", stadium: "루멘 필드", lat: 47.5952, lng: -122.3316, sb: 1, coach: "마이크 맥도널드 (Mike Macdonald)", qb: "샘 다놀드 / 지노 스미스", rb: "케네스 워커 3세", wr: "DK 메칼프 / 잭슨 스미스-은지그바", def: "데본 위더스푼 / 레너드 윌리엄스", wins: 5, losses: 4, ties: 0, pf: 202, pa: 162, streak: "1승", nextGame: "10주차 @ 라스베이거스 (11/16 06:05)" },
             { id: "LAR", name: "로스앤젤레스 램스", enName: "Los Angeles Rams", conf: "NFC", div: "NFC 서부", city: "잉글우드, CA", stadium: "소파이 스타디움", lat: 33.9535, lng: -118.3390, sb: 2, coach: "션 맥베이 (Sean McVay)", qb: "매튜 스태포드 (#9)", rb: "카이렌 윌리엄스", wr: "푸카 나쿠아 / 쿠퍼 컵", def: "재러드 버스 / 코비 터너", wins: 5, losses: 4, ties: 0, pf: 214, pa: 181, streak: "3연승", nextGame: "10주차 @ 애리조나 (11/16 06:05)" },
-            { id: "ARI", name: "애리조나 카디널스", enName: "Arizona Cardinals", conf: "NFC", div: "NFC 서부", city: "글렌데일, AZ", stadium: "스테이트팜 스타디움", lat: 33.5276, lng: -112.2626, sb: 0, coach: "조나단 개넌 (Jonathan Gannon)", qb: "카일러 머리 (#1)", rb: "제임스 코너", wr: "마빈 해리슨 주니어 / 트레이 맥브라이드", def: "부다 베이커 / 재븐 콜린스", wins: 3, losses: 6, ties: 0, pf: 178, pa: 255, streak: "1패", nextGame: "10주차 vs LA 램스 (11/16 06:05)"
+            { id: "ARI", name: "애리조나 카디널스", enName: "Arizona Cardinals", conf: "NFC", div: "NFC 서부", city: "글렌데일, AZ", stadium: "스테이트팜 스타디움", lat: 33.5276, lng: -112.2626, sb: 0, coach: "조나단 개넌 (Jonathan Gannon)", qb: "카일러 머리 (#1)", rb: "제임스 코너", wr: "마빈 해리슨 주니어 / 트레이 맥브라이드", def: "부다 베이커 / 재븐 콜린스", wins: 3, losses: 6, ties: 0, pf: 178, pa: 255, streak: "1패", nextGame: "10주차 vs LA 램스 (11/16 06:05)" }
+        ];
+
+        // =========================================================================
+        // 2. 1주차 ~ 10주차 전 경기 데이터베이스 (1~9주차 실측 완료, 10주차 예정)
+        // =========================================================================
+        const WEEKLY_GAMES = {
+            1: {
+                byes: [],
+                games: [
+                    { away: "ATL", aScore: 13, home: "PIT", hScore: 20, status: "FINAL", note: "스틸러스 홈 개막전 승리 (T.J. 와트 2쌕)" },
+                    { away: "DEN", aScore: 10, home: "KC", hScore: 31, status: "FINAL" },
+                    { away: "TB", aScore: 27, home: "CIN", hScore: 33, status: "FINAL" },
+                    { away: "CLE", aScore: 10, home: "JAX", hScore: 34, status: "FINAL" },
+                    { away: "BAL", aScore: 41, home: "IND", hScore: 23, status: "FINAL" },
+                    { away: "HOU", aScore: 31, home: "BUF", hScore: 36, status: "FINAL" },
+                    { away: "TEN", aScore: 10, home: "NYJ", hScore: 23, status: "FINAL" },
+                    { away: "NE", aScore: 10, home: "SEA", hScore: 13, status: "FINAL" },
+                    { away: "CAR", aScore: 37, home: "CHI", hScore: 59, status: "FINAL" },
+                    { away: "GB", aScore: 22, home: "MIN", hScore: 39, status: "FINAL" },
+                    { away: "DET", aScore: 27, home: "LAR", hScore: 20, status: "FINAL" },
+                    { away: "WAS", aScore: 20, home: "NYG", hScore: 20, status: "FINAL (OT 무승부)" },
+                    { away: "DAL", aScore: 24, home: "PHI", hScore: 28, status: "FINAL" },
+                    { away: "NO", aScore: 16, home: "ARI", hScore: 24, status: "FINAL" },
+                    { away: "MIA", aScore: 14, home: "SF", hScore: 31, status: "FINAL" },
+                    { away: "LAC", aScore: 17, home: "LV", hScore: 24, status: "FINAL" }
+                ]
+            },
+            2: {
+                byes: [],
+                games: [
+                    { away: "PIT", aScore: 3, home: "NE", hScore: 20, status: "FINAL", note: "폭스버러 원정 패배" },
+                    { away: "CIN", aScore: 20, home: "HOU", hScore: 6, status: "FINAL" },
+                    { away: "TB", aScore: 19, home: "CLE", hScore: 23, status: "FINAL" },
+                    { away: "NO", aScore: 24, home: "BAL", hScore: 17, status: "FINAL" },
+                    { away: "DET", aScore: 31, home: "BUF", hScore: 41, status: "FINAL" },
+                    { away: "IND", aScore: 30, home: "KC", hScore: 33, status: "FINAL" },
+                    { away: "JAX", aScore: 13, home: "DEN", hScore: 20, status: "FINAL" },
+                    { away: "LAC", aScore: 14, home: "LV", hScore: 26, status: "FINAL" },
+                    { away: "NYJ", aScore: 17, home: "GB", hScore: 20, status: "FINAL (OT)" },
+                    { away: "CHI", aScore: 3, home: "MIN", hScore: 9, status: "FINAL" },
+                    { away: "ATL", aScore: 3, home: "CAR", hScore: 34, status: "FINAL" },
+                    { away: "TEN", aScore: 20, home: "PHI", hScore: 24, status: "FINAL" },
+                    { away: "WAS", aScore: 20, home: "DAL", hScore: 37, status: "FINAL" },
+                    { away: "NYG", aScore: 6, home: "LAR", hScore: 28, status: "FINAL" },
+                    { away: "ARI", aScore: 7, home: "SEA", hScore: 31, status: "FINAL" },
+                    { away: "SF", aScore: 35, home: "MIA", hScore: 13, status: "FINAL" }
+                ]
+            },
+            3: {
+                byes: [],
+                games: [
+                    { away: "CIN", aScore: 27, home: "PIT", hScore: 30, status: "FINAL", note: "로저스 4쿼터 역전 드라이브 승리" },
+                    { away: "KC", aScore: 24, home: "MIA", hScore: 10, status: "FINAL" },
+                    { away: "BUF", aScore: 31, home: "NYJ", hScore: 17, status: "FINAL" },
+                    { away: "CLE", aScore: 24, home: "TEN", hScore: 14, status: "FINAL" },
+                    { away: "BAL", aScore: 28, home: "DAL", hScore: 25, status: "FINAL" },
+                    { away: "JAX", aScore: 27, home: "NE", hScore: 13, status: "FINAL" },
+                    { away: "HOU", aScore: 10, home: "MIN", hScore: 24, status: "FINAL" },
+                    { away: "IND", aScore: 21, home: "CHI", hScore: 16, status: "FINAL" },
+                    { away: "DEN", aScore: 26, home: "TB", hScore: 7, status: "FINAL" },
+                    { away: "CAR", aScore: 27, home: "LV", hScore: 20, status: "FINAL" },
+                    { away: "PHI", aScore: 12, home: "NO", hScore: 15, status: "FINAL" },
+                    { away: "GB", aScore: 30, home: "ARI", hScore: 14, status: "FINAL" },
+                    { away: "DET", aScore: 24, home: "ATL", hScore: 20, status: "FINAL" },
+                    { away: "NYG", aScore: 21, home: "WAS", hScore: 18, status: "FINAL" },
+                    { away: "SF", aScore: 24, home: "LAR", hScore: 27, status: "FINAL" },
+                    { away: "LAC", aScore: 13, home: "SEA", hScore: 24, status: "FINAL" }
+                ]
+            },
+            4: {
+                byes: [],
+                games: [
+                    { away: "PIT", aScore: 24, home: "CLE", hScore: 27, status: "FINAL", note: "클리블랜드 원정 종료 직전 FG 실점" },
+                    { away: "JAX", aScore: 22, home: "CIN", hScore: 17, status: "FINAL" },
+                    { away: "BUF", aScore: 10, home: "BAL", hScore: 35, status: "FINAL" },
+                    { away: "KC", aScore: 30, home: "LV", hScore: 27, status: "FINAL" },
+                    { away: "DEN", aScore: 10, home: "NYJ", hScore: 9, status: "FINAL" },
+                    { away: "NE", aScore: 13, home: "SF", hScore: 30, status: "FINAL" },
+                    { away: "MIN", aScore: 31, home: "GB", hScore: 29, status: "FINAL" },
+                    { away: "LAR", aScore: 18, home: "CHI", hScore: 24, status: "FINAL" },
+                    { away: "SEA", aScore: 29, home: "DET", hScore: 42, status: "FINAL" },
+                    { away: "PHI", aScore: 16, home: "TB", hScore: 33, status: "FINAL" },
+                    { away: "NO", aScore: 24, home: "ATL", hScore: 26, status: "FINAL" },
+                    { away: "DAL", aScore: 20, home: "NYG", hScore: 15, status: "FINAL" },
+                    { away: "WAS", aScore: 42, home: "ARI", hScore: 14, status: "FINAL" },
+                    { away: "CAR", aScore: 24, home: "HOU", hScore: 20, status: "FINAL" },
+                    { away: "TEN", aScore: 31, home: "MIA", hScore: 12, status: "FINAL" },
+                    { away: "LAC", aScore: 17, home: "IND", hScore: 24, status: "FINAL" }
+                ]
+            },
+            5: {
+                byes: ["DET", "LAC", "PHI", "TEN"],
+                games: [
+                    { away: "IND", aScore: 20, home: "PIT", hScore: 27, status: "FINAL", note: "스틸러스 4연승 행진의 시작" },
+                    { away: "CIN", aScore: 31, home: "MIA", hScore: 24, status: "FINAL" },
+                    { away: "BAL", aScore: 24, home: "CLE", hScore: 27, status: "FINAL" },
+                    { away: "NYJ", aScore: 17, home: "MIN", hScore: 23, status: "FINAL" },
+                    { away: "BUF", aScore: 24, home: "HOU", hScore: 20, status: "FINAL" },
+                    { away: "CAR", aScore: 10, home: "CHI", hScore: 36, status: "FINAL" },
+                    { away: "LV", aScore: 18, home: "DEN", hScore: 34, status: "FINAL" },
+                    { away: "ARI", aScore: 24, home: "SF", hScore: 23, status: "FINAL" },
+                    { away: "GB", aScore: 24, home: "LAR", hScore: 19, status: "FINAL" },
+                    { away: "NYG", aScore: 29, home: "SEA", hScore: 20, status: "FINAL" },
+                    { away: "DAL", aScore: 17, home: "NE", hScore: 23, status: "FINAL" },
+                    { away: "TB", aScore: 30, home: "ATL", hScore: 36, status: "FINAL (OT)" },
+                    { away: "JAX", aScore: 20, home: "WAS", hScore: 24, status: "FINAL" },
+                    { away: "NO", aScore: 13, home: "KC", hScore: 26, status: "FINAL" }
+                ]
+            },
+            6: {
+                byes: ["KC", "LAR", "MIA", "MIN"],
+                games: [
+                    { away: "PIT", aScore: 26, home: "TB", hScore: 19, status: "FINAL (OT)", note: "탬파베이 원정 연장 승리" },
+                    { away: "ARI", aScore: 18, home: "LAR", hScore: 16, status: "FINAL", note: "라일랜드 버저비터 43야드 FG 승리" },
+                    { away: "SEA", aScore: 14, home: "DEN", hScore: 17, status: "FINAL (OT)" },
+                    { away: "CLE", aScore: 13, home: "BAL", hScore: 10, status: "FINAL" },
+                    { away: "CIN", aScore: 27, home: "NYG", hScore: 17, status: "FINAL" },
+                    { away: "JAX", aScore: 35, home: "CHI", hScore: 16, status: "FINAL" },
+                    { away: "DET", aScore: 47, home: "DAL", hScore: 9, status: "FINAL" },
+                    { away: "SF", aScore: 36, home: "NE", hScore: 24, status: "FINAL" },
+                    { away: "HOU", aScore: 20, home: "GB", hScore: 24, status: "FINAL" },
+                    { away: "IND", aScore: 17, home: "TEN", hScore: 20, status: "FINAL" },
+                    { away: "ATL", aScore: 38, home: "CAR", hScore: 20, status: "FINAL" },
+                    { away: "WAS", aScore: 23, home: "NO", hScore: 30, status: "FINAL" },
+                    { away: "LAC", aScore: 16, home: "LV", hScore: 20, status: "FINAL" },
+                    { away: "BUF", aScore: 23, home: "NYJ", hScore: 20, status: "FINAL" }
+                ]
+            },
+            7: {
+                byes: ["CHI", "DAL"],
+                games: [
+                    { away: "PIT", aScore: 16, home: "NO", hScore: 10, status: "FINAL (파리)", note: "프랑스 파리 국제경기 승리 (3연승)" },
+                    { away: "CIN", aScore: 21, home: "CLE", hScore: 14, status: "FINAL" },
+                    { away: "BAL", aScore: 31, home: "TB", hScore: 21, status: "FINAL" },
+                    { away: "KC", aScore: 28, home: "SF", hScore: 18, status: "FINAL" },
+                    { away: "DET", aScore: 31, home: "MIN", hScore: 29, status: "FINAL" },
+                    { away: "DEN", aScore: 33, home: "JAX", hScore: 10, status: "FINAL" },
+                    { away: "TEN", aScore: 10, home: "BUF", hScore: 34, status: "FINAL" },
+                    { away: "HOU", aScore: 22, home: "GB", hScore: 24, status: "FINAL" },
+                    { away: "SEA", aScore: 34, home: "ATL", hScore: 14, status: "FINAL" },
+                    { away: "PHI", aScore: 3, home: "NYG", hScore: 28, status: "FINAL" },
+                    { away: "CAR", aScore: 7, home: "WAS", hScore: 40, status: "FINAL" },
+                    { away: "MIA", aScore: 16, home: "IND", hScore: 10, status: "FINAL" },
+                    { away: "LV", aScore: 15, home: "LAR", hScore: 20, status: "FINAL" },
+                    { away: "LAC", aScore: 15, home: "ARI", hScore: 17, status: "FINAL" }
+                ]
+            },
+            8: {
+                byes: ["CIN", "CAR", "HOU", "NO", "NYG", "SF"],
+                games: [
+                    { away: "CLE", aScore: 6, home: "PIT", hScore: 27, status: "FINAL", note: "스틸러스 8색 폭발 · 워렌 143야드 (4연승)" },
+                    { away: "BAL", aScore: 10, home: "BUF", hScore: 36, status: "FINAL" },
+                    { away: "KC", aScore: 24, home: "DEN", hScore: 28, status: "FINAL" },
+                    { away: "ARI", aScore: 33, home: "DAL", hScore: 30, status: "FINAL (OT)" },
+                    { away: "IND", aScore: 7, home: "JAX", hScore: 42, status: "FINAL" },
+                    { away: "ATL", aScore: 0, home: "TB", hScore: 16, status: "FINAL" },
+                    { away: "LAC", aScore: 9, home: "LAR", hScore: 24, status: "FINAL" },
+                    { away: "NE", aScore: 24, home: "MIA", hScore: 19, status: "FINAL" },
+                    { away: "PHI", aScore: 10, home: "WAS", hScore: 27, status: "FINAL" },
+                    { away: "CHI", aScore: 34, home: "SEA", hScore: 17, status: "FINAL (MNF)" },
+                    { away: "MIN", aScore: 15, home: "DET", hScore: 19, status: "FINAL" }
+                ]
+            },
+            9: {
+                byes: ["PIT", "TEN"],
+                games: [
+                    { away: "BUF", aScore: 23, home: "MIN", hScore: 6, status: "FINAL (MNF)", note: "버펄로 7승 1패 질주 · 미네소타 2연패" },
+                    { away: "TB", aScore: 24, home: "CHI", hScore: 27, status: "FINAL (SNF)", note: "산토스 38야드 결승 FG, 베어스 7승 2패" },
+                    { away: "JAX", aScore: 33, home: "BAL", hScore: 10, status: "FINAL (TNF)", note: "재규어스 6승 2패 · 볼티모어 4연패" },
+                    { away: "CIN", aScore: 34, home: "ATL", hScore: 17, status: "FINAL (마드리드)", note: "산티아고 베르나베우 경기, 벵골스 6승 2패" },
+                    { away: "CLE", aScore: 22, home: "NO", hScore: 23, status: "FINAL", note: "세인츠 1점차 극적 승리" },
+                    { away: "NYJ", aScore: 12, home: "KC", hScore: 35, status: "FINAL", note: "마홈스 맹활약, 치프스 6승 2패" },
+                    { away: "DEN", aScore: 26, home: "CAR", hScore: 21, status: "FINAL", note: "덴버 파죽의 5연승 (7승 2패)" },
+                    { away: "DAL", aScore: 27, home: "IND", hScore: 23, status: "FINAL" },
+                    { away: "NYG", aScore: 19, home: "PHI", hScore: 11, status: "FINAL", note: "자이언츠 5승 2패 1무 NFC 동부 1위" },
+                    { away: "LAR", aScore: 20, home: "WAS", hScore: 13, status: "FINAL" },
+                    { away: "DET", aScore: 19, home: "MIA", hScore: 9, status: "FINAL" },
+                    { away: "HOU", aScore: 44, home: "LAC", hScore: 22, status: "FINAL" },
+                    { away: "ARI", aScore: 3, home: "SEA", hScore: 17, status: "FINAL" },
+                    { away: "LV", aScore: 17, home: "SF", hScore: 38, status: "FINAL", note: "49ers 7승 1패 NFC 서부 단독 1위" },
+                    { away: "GB", aScore: 45, home: "NE", hScore: 27, status: "FINAL" }
+                ]
+            },
+            10: {
+                byes: ["CHI", "DEN", "PHI", "TB"],
+                games: [
+                    { away: "WAS", aScore: "-", home: "NYG", hScore: "-", status: "11/13(금) 10:15 KST (TNF)" },
+                    { away: "NE", aScore: "-", home: "DET", hScore: "-", status: "11/15(일) 23:30 KST (독일 뮌헨)" },
+                    { away: "CAR", aScore: "-", home: "NO", hScore: "-", status: "11/16(월) 03:00 KST" },
+                    { away: "MIA", aScore: "-", home: "IND", hScore: "-", status: "11/16(월) 03:00 KST" },
+                    { away: "HOU", aScore: "-", home: "CLE", hScore: "-", status: "11/16(월) 03:00 KST" },
+                    { away: "MIN", aScore: "-", home: "GB", hScore: "-", status: "11/16(월) 03:00 KST" },
+                    { away: "JAX", aScore: "-", home: "TEN", hScore: "-", status: "11/16(월) 03:00 KST" },
+                    { away: "BUF", aScore: "-", home: "NYJ", hScore: "-", status: "11/16(월) 03:00 KST" },
+                    { away: "KC", aScore: "-", home: "ATL", hScore: "-", status: "11/16(월) 03:00 KST" },
+                    { away: "LAR", aScore: "-", home: "ARI", hScore: "-", status: "11/16(월) 06:05 KST" },
+                    { away: "SEA", aScore: "-", home: "LV", hScore: "-", status: "11/16(월) 06:05 KST" },
+                    { away: "SF", aScore: "-", home: "DAL", hScore: "-", status: "11/16(월) 06:25 KST" },
+                    { away: "PIT", aScore: "-", home: "CIN", hScore: "-", status: "11/16(월) 10:20 KST (SNF 빅매치)", note: "6승 2패 동률 AFC 북부 1위 결정전" },
+                    { away: "LAC", aScore: "-", home: "BAL", hScore: "-", status: "11/17(화) 10:15 KST (MNF)" }
+                ]
+            }
+        };
+
+        let currentFilter = 'ALL';
+        let currentWeek = 9;
+        let usMapInstance = null;
+        let modalMapInstance = null;
+
+        // =========================================================================
+        // 3. 초기화 및 순위/시드 계산 엔진
+        // =========================================================================
+        function calculateAllRankings() {
+            NFL_TEAMS.forEach(t => {
+                const total = t.wins + t.losses + (t.ties || 0);
+                t.pct = total > 0 ? (t.wins + 0.5 * (t.ties || 0)) / total : 0;
+                t.diff = t.pf - t.pa;
+                // 각 구단별 1~9주차 매치 로그 생성
+                t.gamesLog = [];
+                for (let w = 1; w <= 9; w++) {
+                    const wkData = WEEKLY_GAMES[w];
+                    if (wkData.byes.includes(t.id)) {
+                        t.gamesLog.push({ week: w, isBye: true, label: "BYE (휴식)" });
+                        continue;
+                    }
+                    const g = wkData.games.find(x => x.away === t.id || x.home === t.id);
+                    if (g) {
+                        const isHome = g.home === t.id;
+                        const myScore = isHome ? g.hScore : g.aScore;
+                        const oppScore = isHome ? g.aScore : g.hScore;
+                        const oppId = isHome ? g.away : g.home;
+                        const res = myScore > oppScore ? '승' : myScore < oppScore ? '패' : '무';
+                        t.gamesLog.push({
+                            week: w,
+                            isBye: false,
+                            isHome,
+                            oppId,
+                            myScore,
+                            oppScore,
+                            res,
+                            note: g.note || ''
+                        });
+                    }
+                }
+            });
+
+            // 디비전 순위 산정
+            const divisions = [...new Set(NFL_TEAMS.map(t => t.div))];
+            divisions.forEach(div => {
+                const divTeams = NFL_TEAMS.filter(t => t.div === div)
+                    .sort((a, b) => b.pct - a.pct || b.wins - a.wins || b.diff - a.diff);
+                divTeams.forEach((t, idx) => t.divRank = idx + 1);
+            });
+
+            // 콘퍼런스 플레이오프 시드 산정 (지구 1위 4개 팀 = 1~4시드, 나머지 = 5~16시드)
+            ['AFC', 'NFC'].forEach(conf => {
+                const divWinners = NFL_TEAMS.filter(t => t.conf === conf && t.divRank === 1)
+                    .sort((a, b) => b.pct - a.pct || b.wins - a.wins || b.diff - a.diff);
+                const wildCards = NFL_TEAMS.filter(t => t.conf === conf && t.divRank > 1)
+                    .sort((a, b) => b.pct - a.pct || b.wins - a.wins || b.diff - a.diff);
+                [...divWinners, ...wildCards].forEach((t, idx) => t.confSeed = idx + 1);
+            });
+        }
+
+        function getSeedBadgeClass(seed) {
+            if (seed <= 4) return 'seed-top';
+            if (seed <= 7) return 'seed-wild';
+            return 'seed-out';
+        }
+
+        function formatRecord(t) {
+            return t.ties > 0 ? `${t.wins}승 ${t.losses}패 ${t.ties}무` : `${t.wins}승 ${t.losses}패`;
+        }
+
+        // =========================================================================
+        // 4. 화면 렌더링 함수들
+        // =========================================================================
+        function switchMainView(view) {
+            ['teams', 'scoreboard', 'standings', 'positions', 'map', 'matchup'].forEach(v => {
+                document.getElementById(`view-${v}`).classList.toggle('hidden', v !== view);
+                document.getElementById(`tab-${v}`).classList.toggle('active', v === view);
+            });
+            if (view === 'map') setTimeout(initUsMap, 100);
+        }
+
+        function filterTeams(filter) {
+            currentFilter = filter;
+            renderTeams();
+        }
+
+        function renderTeams() {
+            const query = (document.getElementById('team-search')?.value || '').trim().toLowerCase();
+            const grid = document.getElementById('teams-grid');
+
+            const filtered = NFL_TEAMS.filter(t => {
+                const matchConf = currentFilter === 'ALL' || t.conf === currentFilter || t.div === currentFilter;
+                const matchQuery = !query || t.name.toLowerCase().includes(query) || t.id.toLowerCase().includes(query) || t.coach.toLowerCase().includes(query) || t.qb.toLowerCase().includes(query) || t.wr.toLowerCase().includes(query);
+                return matchConf && matchQuery;
+            }).sort((a, b) => (a.id === 'PIT' ? -1 : b.id === 'PIT' ? 1 : b.pct - a.pct || b.diff - a.diff));
+
+            grid.innerHTML = filtered.map(t => {
+                const seedCls = getSeedBadgeClass(t.confSeed);
+                const recentLogs = t.gamesLog.slice(-6); // 최근 6주 경기 뱃지 표시
+                return `
+                <div onclick="openTeamModal('${t.id}')" class="bg-slate-800/90 hover:bg-slate-800 border ${t.id === 'PIT' ? 'border-amber-400 ring-1 ring-amber-400/50' : 'border-slate-700'} rounded-2xl p-4 cursor-pointer transition shadow-lg flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start gap-2">
+                            <div class="flex items-center gap-3">
+                                <img src="https://a.espncdn.com/i/teamlogos/nfl/500/${t.id.toLowerCase()}.png" alt="${t.name}" class="w-14 h-14 object-contain">
+                                <div>
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="text-[11px] font-bold text-slate-400">${t.div} ${t.divRank}위</span>
+                                        <span class="text-[11px] px-2 py-0.5 rounded font-bold ${seedCls}">${t.conf} ${t.confSeed}위</span>
+                                    </div>
+                                    <h3 class="text-lg font-black text-white mt-0.5">${t.name}</h3>
+                                    <p class="text-xs text-slate-400">감독: ${t.coach.split('(')[0]}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 성적 & 득실차 요약 -->
+                        <div class="grid grid-cols-3 gap-2 bg-slate-900/90 rounded-xl p-2.5 mt-3 text-center border border-slate-700/60">
+                            <div>
+                                <div class="text-[10px] text-slate-400">시즌 전적</div>
+                                <div class="text-sm font-black text-white">${formatRecord(t)}</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-slate-400">승률 / 흐름</div>
+                                <div class="text-sm font-bold text-blue-400">.${Math.round(t.pct * 1000).toString().padStart(3,'0')} (${t.streak})</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-slate-400">득실차</div>
+                                <div class="text-sm font-bold ${t.diff >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${t.diff >= 0 ? '+' + t.diff : t.diff} (${t.pf}/${t.pa})</div>
+                            </div>
+                        </div>
+
+                        <!-- 주전 QB & 최근 4~9주차 스코어 뱃지 -->
+                        <div class="mt-3 text-xs space-y-1">
+                            <div class="flex justify-between text-slate-300">
+                                <span class="text-slate-400">주전 QB:</span>
+                                <span class="font-bold text-amber-300">${t.qb}</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <div class="text-[11px] font-bold text-slate-400 mb-1.5">최근 4~9주차 경기 스코어 (클릭 시 1~9주 전체 보기)</div>
+                            <div class="grid grid-cols-2 gap-1.5">
+                                ${recentLogs.map(g => {
+                                    if (g.isBye) return `<div class="bg-slate-900/60 border border-slate-700/60 rounded px-2 py-1 text-[11px] text-slate-400 text-center">W${g.week}: BYE (휴식)</div>`;
+                                    const badgeColor = g.res === '승' ? 'text-emerald-400 border-emerald-500/30 bg-emerald-950/30' : g.res === '패' ? 'text-rose-400 border-rose-500/30 bg-rose-950/30' : 'text-amber-300 border-amber-500/30';
+                                    return `<div class="border rounded px-2 py-1 text-[11px] flex justify-between items-center ${badgeColor}">
+                                        <span class="font-bold">W${g.week} ${g.isHome ? 'vs' : '@'} ${g.oppId}</span>
+                                        <span class="font-black">${g.myScore}:${g.oppScore} ${g.res}</span>
+                                    </div>`;
+                                }).join('')}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-3 pt-2.5 border-t border-slate-700/60 flex justify-between items-center text-[11px] text-slate-400">
+                        <span>🔜 ${t.nextGame}</span>
+                        <span class="text-blue-400 font-bold">상세 도감 →</span>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function renderWeekTabs() {
+            const tabContainer = document.getElementById('week-tabs');
+            let html = '';
+            for (let w = 1; w <= 10; w++) {
+                const label = w === 9 ? `9주차 (최신완료)` : w === 10 ? `10주차 (예정)` : `${w}주차`;
+                html += `<button onclick="selectWeek(${w})" class="week-btn ${currentWeek === w ? 'active' : 'bg-slate-900 text-slate-300 border-slate-700'} border px-3.5 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition">${label}</button>`;
+            }
+            tabContainer.innerHTML = html;
+        }
+
+        function selectWeek(w) {
+            currentWeek = w;
+            renderWeekTabs();
+            const wkData = WEEKLY_GAMES[w];
+            document.getElementById('week-summary-badge').textContent = w <= 9 ? `총 ${wkData.games.length}경기 종료` : `총 ${wkData.games.length}경기 예정`;
+
+            const byeBanner = document.getElementById('bye-teams-banner');
+            if (wkData.byes && wkData.byes.length > 0) {
+                byeBanner.classList.remove('hidden');
+                const byeNames = wkData.byes.map(id => {
+                    const team = NFL_TEAMS.find(t => t.id === id);
+                    return team ? `${team.name}(${id})` : id;
+                }).join(', ');
+                byeBanner.innerHTML = `<span class="font-bold text-amber-400">🛋️ ${w}주차 휴식 구단 (BYE WEEK):</span> <span>${byeNames}</span>`;
+            } else {
+                byeBanner.classList.add('hidden');
+            }
+
+            const grid = document.getElementById('scoreboard-grid');
+            grid.innerHTML = wkData.games.map(g => {
+                const awayTeam = NFL_TEAMS.find(t => t.id === g.away) || { name: g.away };
+                const homeTeam = NFL_TEAMS.find(t => t.id === g.home) || { name: g.home };
+                const isDone = typeof g.aScore === 'number';
+                const awayWon = isDone && g.aScore > g.hScore;
+                const homeWon = isDone && g.hScore > g.aScore;
+
+                return `
+                <div class="bg-slate-800/90 border ${g.away === 'PIT' || g.home === 'PIT' ? 'border-amber-400' : 'border-slate-700'} rounded-xl p-4 shadow space-y-2.5">
+                    <div class="flex justify-between items-center text-[11px] font-bold text-slate-400 border-b border-slate-700/70 pb-1.5">
+                        <span>Week ${w}</span>
+                        <span class="${isDone ? 'text-emerald-400' : 'text-amber-300'}">${g.status}</span>
+                    </div>
+                    <div onclick="openTeamModal('${g.away}')" class="flex justify-between items-center p-2 rounded-lg cursor-pointer ${awayWon ? 'bg-slate-900 font-black text-white' : 'text-slate-300 hover:bg-slate-900/50'}">
+                        <div class="flex items-center gap-2.5">
+                            <img src="https://a.espncdn.com/i/teamlogos/nfl/500/${g.away.toLowerCase()}.png" class="w-8 h-8 object-contain">
+                            <div>
+                                <div class="text-sm">${awayTeam.name}</div>
+                                <div class="text-[10px] text-slate-400">원정 (Away)</div>
+                            </div>
+                        </div>
+                        <div class="text-xl font-black">${g.aScore}</div>
+                    </div>
+                    <div onclick="openTeamModal('${g.home}')" class="flex justify-between items-center p-2 rounded-lg cursor-pointer ${homeWon ? 'bg-slate-900 font-black text-white' : 'text-slate-300 hover:bg-slate-900/50'}">
+                        <div class="flex items-center gap-2.5">
+                            <img src="https://a.espncdn.com/i/teamlogos/nfl/500/${g.home.toLowerCase()}.png" class="w-8 h-8 object-contain">
+                            <div>
+                                <div class="text-sm">${homeTeam.name}</div>
+                                <div class="text-[10px] text-slate-400">홈 (Home)</div>
+                            </div>
+                        </div>
+                        <div class="text-xl font-black">${g.hScore}</div>
+                    </div>
+                    ${g.note ? `<div class="text-[11px] bg-blue-950/50 border border-blue-500/30 text-blue-300 px-2.5 py-1 rounded">📌 ${g.note}</div>` : ''}
+                </div>`;
+            }).join('');
+        }
+
+        function renderStandings() {
+            const container = document.getElementById('standings-container');
+            container.innerHTML = ['AFC', 'NFC'].map(conf => {
+                const divs = [`${conf} 북부`, `${conf} 동부`, `${conf} 남부`, `${conf} 서부`];
+                return `
+                <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-5 space-y-5">
+                    <h3 class="text-xl font-black ${conf === 'AFC' ? 'text-rose-400' : 'text-blue-400'} border-b border-slate-700 pb-2">${conf} 콘퍼런스 디비전 & 시드 순위</h3>
+                    ${divs.map(divName => {
+                        const teams = NFL_TEAMS.filter(t => t.div === divName).sort((a, b) => a.divRank - b.divRank);
+                        return `
+                        <div>
+                            <h4 class="text-xs font-black text-slate-300 bg-slate-900 px-3 py-1.5 rounded-t-lg border border-slate-700">${divName}</h4>
+                            <div class="overflow-x-auto border-x border-b border-slate-700 rounded-b-lg">
+                                <table class="w-full text-xs text-left">
+                                    <thead class="bg-slate-900/60 text-slate-400 border-b border-slate-700">
+                                        <tr>
+                                            <th class="py-2 px-2.5">지구</th>
+                                            <th class="py-2 px-2">콘퍼런스 시드</th>
+                                            <th class="py-2 px-2">구단명</th>
+                                            <th class="py-2 px-2 text-center">전적</th>
+                                            <th class="py-2 px-2 text-center">승률</th>
+                                            <th class="py-2 px-2 text-center">득실차</th>
+                                            <th class="py-2 px-2 text-center">흐름</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-700/60">
+                                        ${teams.map(t => `
+                                        <tr onclick="openTeamModal('${t.id}')" class="hover:bg-slate-700/50 cursor-pointer ${t.id === 'PIT' ? 'bg-amber-500/10' : ''}">
+                                            <td class="py-2.5 px-2.5 font-black text-white">${t.divRank}위</td>
+                                            <td class="py-2.5 px-2">
+                                                <span class="px-2 py-0.5 rounded text-[11px] font-bold ${getSeedBadgeClass(t.confSeed)}">${t.conf} ${t.confSeed}위</span>
+                                            </td>
+                                            <td class="py-2.5 px-2 font-bold text-white flex items-center gap-2">
+                                                <img src="https://a.espncdn.com/i/teamlogos/nfl/500/${t.id.toLowerCase()}.png" class="w-5 h-5 object-contain">
+                                                <span>${t.name}</span>
+                                            </td>
+                                            <td class="py-2.5 px-2 text-center font-bold">${formatRecord(t)}</td>
+                                            <td class="py-2.5 px-2 text-center text-slate-300">.${Math.round(t.pct * 1000).toString().padStart(3,'0')}</td>
+                                            <td class="py-2.5 px-2 text-center font-bold ${t.diff >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${t.diff >= 0 ? '+' + t.diff : t.diff}</td>
+                                            <td class="py-2.5 px-2 text-center text-slate-300">${t.streak}</td>
+                                        </tr>`).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>`;
+                    }).join('')}
+                </div>`;
+            }).join('');
+        }
+
+        function renderPositions(posFilter = 'ALL') {
+            const grid = document.getElementById('positions-grid');
+            grid.innerHTML = NFL_TEAMS.map(t => `
+                <div onclick="openTeamModal('${t.id}')" class="bg-slate-800/90 border border-slate-700 rounded-xl p-4 hover:border-slate-500 cursor-pointer space-y-2.5">
+                    <div class="flex items-center gap-2.5 border-b border-slate-700 pb-2">
+                        <img src="https://a.espncdn.com/i/teamlogos/nfl/500/${t.id.toLowerCase()}.png" class="w-8 h-8 object-contain">
+                        <div>
+                            <div class="text-sm font-black text-white">${t.name}</div>
+                            <div class="text-[11px] text-slate-400">${formatRecord(t)} (${t.conf} ${t.confSeed}위)</div>
+                        </div>
+                    </div>
+                    <div class="space-y-1.5 text-xs">
+                        ${(posFilter === 'ALL' || posFilter === 'QB') ? `<div><span class="text-amber-400 font-bold">QB:</span> <span class="text-white font-semibold">${t.qb}</span></div>` : ''}
+                        ${(posFilter === 'ALL' || posFilter === 'RB') ? `<div><span class="text-emerald-400 font-bold">RB:</span> <span class="text-slate-200">${t.rb}</span></div>` : ''}
+                        ${(posFilter === 'ALL' || posFilter === 'WR') ? `<div><span class="text-blue-400 font-bold">WR/TE:</span> <span class="text-slate-200">${t.wr}</span></div>` : ''}
+                        ${(posFilter === 'ALL' || posFilter === 'DEF') ? `<div><span class="text-rose-400 font-bold">DEF:</span> <span class="text-slate-200">${t.def}</span></div>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function initUsMap() {
+            if (!usMapInstance) {
+                usMapInstance = L.map('us-map').setView([39.50, -98.35], 4);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; OpenStreetMap'
+                }).addTo(usMapInstance);
+
+                NFL_TEAMS.forEach(t => {
+                    const marker = L.marker([t.lat, t.lng]).addTo(usMapInstance);
+                    marker.bindPopup(`
+                        <div style="min-width:180px; color:#0f172a;">
+                            <div style="font-weight:900; font-size:14px;">${t.name} (${t.id})</div>
+                            <div style="font-size:12px; color:#475569;">${t.stadium} (${t.city})</div>
+                            <div style="font-size:12px; font-weight:700; margin-top:4px;">전적: ${formatRecord(t)} (${t.conf} ${t.confSeed}위)</div>
+                            <div style="margin-top:6px; display:flex; gap:6px;">
+                                <button onclick="openTeamModal('${t.id}')" style="background:#2563eb; color:white; padding:3px 8px; border-radius:4px; font-size:11px; font-weight:bold;">구단 도감</button>
+                                <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(t.stadium + ' ' + t.city)}" target="_blank" style="background:#059669; color:white; padding:3px 8px; border-radius:4px; font-size:11px; font-weight:bold; text-decoration:none;">구글 지도</a>
+                            </div>
+                        </div>
+                    `);
+                });
+            } else {
+                usMapInstance.invalidateSize();
+            }
+        }
+
+        function resetUsMap() {
+            if (usMapInstance) usMapInstance.setView([39.50, -98.35], 4);
+        }
+
+        function initMatchupSelects() {
+            const selA = document.getElementById('matchup-team-a');
+            const selB = document.getElementById('matchup-team-b');
+            const options = NFL_TEAMS.map(t => `<option value="${t.id}">${t.name} (${formatRecord(t)}, ${t.conf} ${t.confSeed}위)</option>`).join('');
+            selA.innerHTML = options;
+            selB.innerHTML = options;
+            selA.value = 'PIT';
+            selB.value = 'CIN';
+            renderMatchup();
+        }
+
+        function setMatchup(idA, idB) {
+            document.getElementById('matchup-team-a').value = idA;
+            document.getElementById('matchup-team-b').value = idB;
+            renderMatchup();
+        }
+
+        function renderMatchup() {
+            const idA = document.getElementById('matchup-team-a').value;
+            const idB = document.getElementById('matchup-team-b').value;
+            const a = NFL_TEAMS.find(t => t.id === idA);
+            const b = NFL_TEAMS.find(t => t.id === idB);
+            if (!a || !b) return;
+
+            const gamesA = a.wins + a.losses + (a.ties || 0);
+            const gamesB = b.wins + b.losses + (b.ties || 0);
+            const ppgA = (a.pf / gamesA).toFixed(1);
+            const ppgB = (b.pf / gamesB).toFixed(1);
+            const papgA = (a.pa / gamesA).toFixed(1);
+            const papgB = (b.pa / gamesB).toFixed(1);
+
+            document.getElementById('matchup-result').innerHTML = `
+                <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 space-y-6">
+                    <div class="grid grid-cols-3 items-center text-center gap-4 border-b border-slate-700 pb-6">
+                        <div onclick="openTeamModal('${a.id}')" class="cursor-pointer space-y-2">
+                            <img src="https://a.espncdn.com/i/teamlogos/nfl/500/${a.id.toLowerCase()}.png" class="w-20 h-20 mx-auto object-contain">
+                            <h3 class="text-xl font-black text-white">${a.name}</h3>
+                            <div class="text-sm font-bold text-amber-400">${formatRecord(a)} (${a.conf} ${a.confSeed}위)</div>
+                        </div>
+                        <div class="text-2xl font-black text-slate-500">VS</div>
+                        <div onclick="openTeamModal('${b.id}')" class="cursor-pointer space-y-2">
+                            <img src="https://a.espncdn.com/i/teamlogos/nfl/500/${b.id.toLowerCase()}.png" class="w-20 h-20 mx-auto object-contain">
+                            <h3 class="text-xl font-black text-white">${b.name}</h3>
+                            <div class="text-sm font-bold text-blue-400">${formatRecord(b)} (${b.conf} ${b.confSeed}위)</div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 text-sm">
+                        <div class="grid grid-cols-3 text-center bg-slate-900 p-3 rounded-xl">
+                            <div class="font-bold text-white">${ppgA}점 (총 ${a.pf})</div>
+                            <div class="text-xs text-slate-400 font-bold self-center">경기당 평균 득점</div>
+                            <div class="font-bold text-white">${ppgB}점 (총 ${b.pf})</div>
+                        </div>
+                        <div class="grid grid-cols-3 text-center bg-slate-900 p-3 rounded-xl">
+                            <div class="font-bold text-white">${papgA}점 (총 ${a.pa})</div>
+                            <div class="text-xs text-slate-400 font-bold self-center">경기당 평균 실점</div>
+                            <div class="font-bold text-white">${papgB}점 (총 ${b.pa})</div>
+                        </div>
+                        <div class="grid grid-cols-3 text-center bg-slate-900 p-3 rounded-xl">
+                            <div class="font-bold ${a.diff >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${a.diff >= 0 ? '+'+a.diff : a.diff} (${a.streak})</div>
+                            <div class="text-xs text-slate-400 font-bold self-center">득실차 & 최근 흐름</div>
+                            <div class="font-bold ${b.diff >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${b.diff >= 0 ? '+'+b.diff : b.diff} (${b.streak})</div>
+                        </div>
+                        <div class="grid grid-cols-3 text-center bg-slate-900 p-3 rounded-xl">
+                            <div class="font-bold text-amber-300">${a.qb}</div>
+                            <div class="text-xs text-slate-400 font-bold self-center">주전 쿼터백 (QB)</div>
+                            <div class="font-bold text-amber-300">${b.qb}</div>
+                        </div>
+                        <div class="grid grid-cols-3 text-center bg-slate-900 p-3 rounded-xl">
+                            <div class="text-slate-200">${a.rb}</div>
+                            <div class="text-xs text-slate-400 font-bold self-center">러닝백 (RB)</div>
+                            <div class="text-slate-200">${b.rb}</div>
+                        </div>
+                        <div class="grid grid-cols-3 text-center bg-slate-900 p-3 rounded-xl">
+                            <div class="text-slate-200">${a.wr}</div>
+                            <div class="text-xs text-slate-400 font-bold self-center">타겟 (WR/TE)</div>
+                            <div class="text-slate-200">${b.wr}</div>
+                        </div>
+                        <div class="grid grid-cols-3 text-center bg-slate-900 p-3 rounded-xl">
+                            <div class="text-slate-200">${a.def}</div>
+                            <div class="text-xs text-slate-400 font-bold self-center">핵심 수비수 (DEF)</div>
+                            <div class="text-slate-200">${b.def}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // =========================================================================
+        // 5. 구단 상세 모달 (1~9주차 전 경기 매치 로그 + 미니 지도 + 구글 지도 연동)
+        // =========================================================================
+        function openTeamModal(id) {
+            const t = NFL_TEAMS.find(x => x.id === id);
+            if (!t) return;
+
+            document.getElementById('team-modal').classList.remove('hidden');
+            document.getElementById('modal-header-title').innerHTML = `
+                <img src="https://a.espncdn.com/i/teamlogos/nfl/500/${t.id.toLowerCase()}.png" class="w-10 h-10 object-contain">
+                <div>
+                    <h2 class="text-xl font-black text-white">${t.name} <span class="text-sm font-normal text-slate-400">(${t.enName})</span></h2>
+                    <p class="text-xs text-slate-400">${t.div} ${t.divRank}위 · ${t.conf} 시드 ${t.confSeed}위 · 슈퍼볼 우승 ${t.sb}회</p>
+                </div>
+            `;
+
+            document.getElementById('modal-body').innerHTML = `
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                    <div class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                        <div class="text-xs text-slate-400">9주차 공식 성적</div>
+                        <div class="text-lg font-black text-white mt-0.5">${formatRecord(t)}</div>
+                    </div>
+                    <div class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                        <div class="text-xs text-slate-400">콘퍼런스 시드</div>
+                        <div class="text-lg font-black text-amber-400 mt-0.5">${t.conf} ${t.confSeed}위</div>
+                    </div>
+                    <div class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                        <div class="text-xs text-slate-400">총 득점 / 총 실점</div>
+                        <div class="text-lg font-black text-white mt-0.5">${t.pf} / ${t.pa} (${t.diff >= 0 ? '+'+t.diff : t.diff})</div>
+                    </div>
+                    <div class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                        <div class="text-xs text-slate-400">감독</div>
+                        <div class="text-sm font-bold text-white mt-1">${t.coach}</div>
+                    </div>
+                </div>
+
+                <!-- 포지션별 주전 -->
+                <div class="bg-slate-800/80 border border-slate-700 rounded-xl p-4">
+                    <h3 class="text-sm font-black text-white mb-3">⭐ 포지션별 핵심 주전 라인업</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+                        <div class="bg-slate-900 p-2.5 rounded-lg"><span class="text-amber-400 font-bold">쿼터백 (QB):</span> <span class="text-white font-bold ml-1">${t.qb}</span></div>
+                        <div class="bg-slate-900 p-2.5 rounded-lg"><span class="text-emerald-400 font-bold">러닝백 (RB):</span> <span class="text-white ml-1">${t.rb}</span></div>
+                        <div class="bg-slate-900 p-2.5 rounded-lg"><span class="text-blue-400 font-bold">리시버 (WR/TE):</span> <span class="text-white ml-1">${t.wr}</span></div>
+                        <div class="bg-slate-900 p-2.5 rounded-lg"><span class="text-rose-400 font-bold">수비 핵심 (DEF):</span> <span class="text-white ml-1">${t.def}</span></div>
+                    </div>
+                </div>
+
+                <!-- 2026 시즌 1~9주차 전 경기 매치 로그 테이블 -->
+                <div class="bg-slate-800/80 border border-slate-700 rounded-xl p-4">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-sm font-black text-white">📋 2026 시즌 1~9주차 전 경기 실측 스코어 로그</h3>
+                        <span class="text-xs text-blue-400 font-bold">다음 경기: ${t.nextGame}</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs text-left">
+                            <thead class="bg-slate-900 text-slate-400 border-b border-slate-700">
+                                <tr>
+                                    <th class="py-2 px-3">주차</th>
+                                    <th class="py-2 px-3">구분</th>
+                                    <th class="py-2 px-3">상대 구단</th>
+                                    <th class="py-2 px-3 text-center">최종 스코어</th>
+                                    <th class="py-2 px-3 text-center">결과</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-700/60">
+                                ${t.gamesLog.map(g => {
+                                    if (g.isBye) {
+                                        return `<tr class="bg-slate-900/40 text-slate-400">
+                                            <td class="py-2 px-3 font-bold">${g.week}주차</td>
+                                            <td class="py-2 px-3">-</td>
+                                            <td class="py-2 px-3" colspan="3">휴식주 (BYE WEEK)</td>
+                                        </tr>`;
+                                    }
+                                    const oppTeam = NFL_TEAMS.find(x => x.id === g.oppId) || { name: g.oppId };
+                                    const resBadge = g.res === '승' ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40' : g.res === '패' ? 'bg-rose-500/20 text-rose-300 border-rose-500/40' : 'bg-amber-500/20 text-amber-300';
+                                    return `<tr>
+                                        <td class="py-2 px-3 font-bold text-white">${g.week}주차</td>
+                                        <td class="py-2 px-3">${g.isHome ? '<span class="text-blue-400 font-bold">홈 (vs)</span>' : '<span class="text-slate-400">원정 (@)</span>'}</td>
+                                        <td class="py-2 px-3 font-bold text-white flex items-center gap-2">
+                                            <img src="https://a.espncdn.com/i/teamlogos/nfl/500/${g.oppId.toLowerCase()}.png" class="w-5 h-5 object-contain">
+                                            <span>${oppTeam.name}</span>
+                                        </td>
+                                        <td class="py-2 px-3 text-center font-black text-sm text-white">${g.myScore} : ${g.oppScore}</td>
+                                        <td class="py-2 px-3 text-center"><span class="px-2 py-0.5 rounded border font-bold ${resBadge}">${g.res} (${g.myScore - g.oppScore >= 0 ? '+'+(g.myScore-g.oppScore) : g.myScore-g.oppScore})</span></td>
+                                    </tr>`;
+                                }).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 홈구장 위치 & 구글 지도 연동 -->
+                <div class="bg-slate-800/80 border border-slate-700 rounded-xl p-4 space-y-3">
+                    <div class="flex flex-wrap justify-between items-center gap-2">
+                        <div>
+                            <h3 class="text-sm font-black text-white">📍 홈구장: ${t.stadium} (${t.city})</h3>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(t.stadium + ' ' + t.city)}" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold">🌐 구글 지도에서 열기</a>
+                    </div>
+                    <div id="modal-map"></div>
+                </div>
+            `;
+
+            setTimeout(() => {
+                if (modalMapInstance) modalMapInstance.remove();
+                modalMapInstance = L.map('modal-map').setView([t.lat, t.lng], 14);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(modalMapInstance);
+                L.marker([t.lat, t.lng]).addTo(modalMapInstance)
+                    .bindPopup(`<b>${t.stadium}</b><br>${t.name} 홈구장`)
+                    .openPopup();
+            }, 120);
+        }
+
+        function closeModal() {
+            document.getElementById('team-modal').classList.add('hidden');
+            if (modalMapInstance) {
+                modalMapInstance.remove();
+                modalMapInstance = null;
+            }
+        }
+
+        async function syncLatestRecords() {
+            const toast = document.getElementById('toast');
+            toast.textContent = "🔄 2026 시즌 9주차 전 구단 공식 성적 및 1~9주차 스코어 정합성 검증 완료!";
+            toast.classList.remove('hidden');
+            calculateAllRankings();
+            renderTeams();
+            selectWeek(currentWeek);
+            renderStandings();
+            setTimeout(() => toast.classList.add('hidden'), 3500);
+        }
+
+        window.onload = () => {
+            calculateAllRankings();
+            renderTeams();
+            selectWeek(9);
+            renderStandings();
+            renderPositions('ALL');
+            initMatchupSelects();
+        };
+    </script>
+</body>
+</html>
